@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI ATLAS — أطلس الذكاء الاصطناعي | ZYAD MAMDOUH</title>
+<meta name="description" content="أطلس الذكاء الاصطناعي: شرح، مكتبة برومبتات لكل شغلانة، مُنشئ برومبت بالأسئلة، برومبتات بناء مواقع و SaaS، ودليل أدوات الـ AI.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--a:#a855f7;--b:#ec4899;--c:#06b6d4;--g:linear-gradient(120deg,var(--a),var(--b));--r:16px;--ok:#10b981;--warn:#f59e0b;--bad:#ef4444}
+[data-theme=dark]{--bg:#06060c;--bg2:#0c0c16;--card:#11111d;--card2:#171728;--tx:#f1efff;--mu:#9a98b5;--fa:#5d5b78;--bd:rgba(255,255,255,.08);--sh:0 20px 60px rgba(0,0,0,.5)}
+[data-theme=light]{--bg:#f6f5fc;--bg2:#ffffff;--card:#ffffff;--card2:#f1effa;--tx:#17152b;--mu:#5c5a75;--fa:#a19fba;--bd:rgba(23,21,43,.1);--sh:0 16px 40px rgba(60,40,120,.12)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Cairo,Tahoma,sans-serif;background:var(--bg);color:var(--tx);line-height:1.8;transition:background .3s,color .3s;min-height:100vh}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(40% 35% at 90% 0%,color-mix(in srgb,var(--a) 22%,transparent),transparent 70%),radial-gradient(35% 30% at 0% 100%,color-mix(in srgb,var(--b) 16%,transparent),transparent 70%)}
+a{color:inherit}
+button,input,textarea,select{font:inherit;color:inherit}
+.wrap{max-width:1240px;margin:0 auto;padding:0 20px}
+.gt{background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* header */
+header{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:color-mix(in srgb,var(--bg) 80%,transparent);border-bottom:1px solid var(--bd)}
+.hd{display:flex;align-items:center;gap:14px;height:68px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:900;font-size:20px;text-decoration:none;white-space:nowrap}
+.logo i{width:36px;height:36px;border-radius:11px;background:var(--g);display:grid;place-items:center;font-style:normal;font-size:18px;color:#fff;box-shadow:0 6px 20px color-mix(in srgb,var(--a) 45%,transparent)}
+nav.main{display:flex;gap:4px;margin-inline-start:12px;flex:1;overflow-x:auto;scrollbar-width:none}
+nav.main a{padding:8px 13px;border-radius:10px;text-decoration:none;color:var(--mu);font-weight:700;font-size:14.5px;white-space:nowrap;transition:.2s}
+nav.main a:hover{color:var(--tx);background:var(--card2)}
+nav.main a.on{color:#fff;background:var(--g)}
+.ib{width:40px;height:40px;border-radius:11px;border:1px solid var(--bd);background:var(--card);display:grid;place-items:center;cursor:pointer;transition:.2s;flex:none;position:relative}
+.ib:hover{border-color:var(--a)}
+.ib svg{width:19px;height:19px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ib .cnt{position:absolute;top:-5px;inset-inline-end:-5px;background:var(--b);color:#fff;font-size:11px;min-width:18px;height:18px;border-radius:9px;display:grid;place-items:center;font-weight:800;padding:0 4px}
+.sbtn{display:flex;align-items:center;gap:8px;height:40px;padding:0 12px;border-radius:11px;border:1px solid var(--bd);background:var(--card);color:var(--mu);cursor:pointer;font-size:14px;flex:none}
+.sbtn kbd{font-family:inherit;font-size:11px;border:1px solid var(--bd);border-radius:5px;padding:0 5px}
+.menu{display:none}
+@media(max-width:980px){nav.main{position:fixed;top:68px;inset-inline:0;flex-direction:column;background:var(--bg2);padding:12px;border-bottom:1px solid var(--bd);display:none;margin:0}nav.main.open{display:flex}.menu{display:grid}.sbtn span,.sbtn kbd{display:none}.hd{gap:8px}.logo{flex:1}}
+
+/* sections */
+section.pg{display:none;padding:34px 0 70px;animation:fade .45s}
+section.pg.on{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}}
+.ph{margin-bottom:24px}
+.ph h1{font-size:clamp(26px,4vw,40px);font-weight:900;line-height:1.35}
+.ph p{color:var(--mu);font-size:17px;max-width:760px}
+.kick{display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:13px;color:var(--a);background:color-mix(in srgb,var(--a) 12%,transparent);border:1px solid color-mix(in srgb,var(--a) 30%,transparent);padding:3px 12px;border-radius:99px;margin-bottom:10px}
+
+/* hero */
+.hero{padding:40px 0 20px;text-align:center}
+.hero h1{font-size:clamp(34px,6.4vw,74px);font-weight:900;line-height:1.2;letter-spacing:-.5px}
+.hero h1 small{display:block;font-size:.42em;color:var(--mu);font-weight:700;margin-top:8px;letter-spacing:0}
+.hero p{max-width:720px;margin:18px auto 0;color:var(--mu);font-size:18px}
+.cta{display:flex;gap:12px;justify-content:center;margin-top:28px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 20px;border-radius:12px;border:1px solid var(--bd);background:var(--card);cursor:pointer;font-weight:800;font-size:15px;text-decoration:none;transition:.2s}
+.btn:hover{transform:translateY(-2px);border-color:var(--a)}
+.btn.pr{background:var(--g);color:#fff;border:0;box-shadow:0 10px 30px color-mix(in srgb,var(--a) 35%,transparent)}
+.btn.sm{padding:6px 12px;font-size:13.5px;border-radius:10px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:40px auto 0;max-width:900px}
+.stat{background:var(--card);border:1px solid var(--bd);border-radius:var(--r);padding:16px}
+.stat b{font-size:34px;font-weight:900;display:block;line-height:1.2}
+.stat span{color:var(--mu);font-size:14px}
+@media(max-width:640px){.stats{grid-template-columns:repeat(2,1fr)}}
+.grid{display:grid;gap:16px}
+.g4{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.g3{grid-template-columns:repeat(auto-fill,minmax(320px,1fr))}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:var(--r);padding:20px;transition:.25s;position:relative}
+.card.hov:hover{transform:translateY(-4px);border-color:color-mix(in srgb,var(--a) 60%,transparent);box-shadow:var(--sh)}
+.card .em{font-size:30px;line-height:1}
+.card h3{font-size:19px;font-weight:800;margin:10px 0 4px}
+.card p{color:var(--mu);font-size:14.5px}
+.go{cursor:pointer}
+.potd{margin-top:36px;padding:24px;border-radius:20px;background:linear-gradient(var(--card),var(--card)) padding-box,var(--g) border-box;border:1.5px solid transparent}
+.potd pre{white-space:pre-wrap;font-family:inherit;font-size:15.5px;margin:10px 0 14px;color:var(--tx)}
+h2.st{font-size:24px;font-weight:900;margin:42px 0 16px;display:flex;align-items:center;gap:10px}
+
+/* chips & inputs */
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{padding:7px 14px;border-radius:99px;border:1px solid var(--bd);background:var(--card);cursor:pointer;font-weight:700;font-size:14px;transition:.2s;white-space:nowrap}
+.chip:hover{border-color:var(--a)}
+.chip.on{background:var(--g);color:#fff;border-color:transparent}
+.inp,textarea.inp,select.inp{width:100%;padding:11px 14px;border-radius:12px;border:1px solid var(--bd);background:var(--bg2);outline:0;transition:.2s;font-size:15px}
+.inp:focus{border-color:var(--a);box-shadow:0 0 0 3px color-mix(in srgb,var(--a) 18%,transparent)}
+textarea.inp{min-height:90px;resize:vertical;line-height:1.7}
+label.lb{display:block;font-weight:800;margin:14px 0 6px;font-size:15px}
+label.lb small{color:var(--mu);font-weight:600}
+.srch{position:relative;margin-bottom:18px}
+.srch input{padding-inline-start:44px;height:50px;font-size:16px;border-radius:14px}
+.srch svg{position:absolute;inset-inline-start:15px;top:15px;width:20px;height:20px;stroke:var(--mu);fill:none;stroke-width:2}
+
+/* prompts */
+.lay{display:grid;grid-template-columns:250px 1fr;gap:22px;align-items:start}
+.side{position:sticky;top:88px;background:var(--card);border:1px solid var(--bd);border-radius:var(--r);padding:10px;max-height:calc(100vh - 110px);overflow:auto}
+.side button{display:flex;width:100%;align-items:center;gap:10px;padding:9px 11px;border:0;background:none;border-radius:10px;cursor:pointer;text-align:start;font-weight:700;font-size:14.5px;color:var(--mu)}
+.side button:hover{background:var(--card2);color:var(--tx)}
+.side button.on{background:color-mix(in srgb,var(--a) 16%,transparent);color:var(--tx)}
+.side button em{font-style:normal;margin-inline-start:auto;font-size:12px;color:var(--fa)}
+@media(max-width:860px){.lay{grid-template-columns:1fr}.side{position:static;max-height:none;display:flex;overflow-x:auto;gap:4px}.side button{width:auto;white-space:nowrap}.side button em{display:none}}
+.pc{display:flex;flex-direction:column;gap:10px}
+.pc .top{display:flex;align-items:center;gap:8px}
+.pc .tag{font-size:12px;font-weight:800;color:var(--a);background:color-mix(in srgb,var(--a) 12%,transparent);padding:2px 10px;border-radius:99px}
+.pc h3{margin:0;font-size:17px}
+.pc pre{white-space:pre-wrap;font-family:inherit;font-size:14px;color:var(--mu);background:var(--bg2);border:1px solid var(--bd);border-radius:12px;padding:12px;max-height:170px;overflow:auto;line-height:1.75}
+mark{background:color-mix(in srgb,var(--b) 22%,transparent);color:var(--tx);border-radius:5px;padding:0 3px}
+.acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto}
+.fav{margin-inline-start:auto;background:none;border:0;cursor:pointer;font-size:20px;line-height:1;opacity:.5;transition:.2s}
+.fav.on{opacity:1;transform:scale(1.1)}
+.empty{text-align:center;color:var(--mu);padding:50px 10px}
+
+/* modal */
+.md{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.55);backdrop-filter:blur(6px);display:none;align-items:flex-start;justify-content:center;padding:5vh 16px;overflow:auto}
+.md.on{display:flex}
+.mbox{background:var(--bg2);border:1px solid var(--bd);border-radius:20px;width:min(860px,100%);padding:24px;box-shadow:var(--sh);animation:fade .3s}
+.mbox h3{font-size:21px;font-weight:900;display:flex;align-items:center;gap:10px}
+.mbox .x{margin-inline-start:auto}
+.fill{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:14px}
+@media(max-width:720px){.fill{grid-template-columns:1fr}}
+.prev{white-space:pre-wrap;background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:14px;font-size:14.5px;line-height:1.8;max-height:420px;overflow:auto}
+
+/* wizard */
+.wz{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
+@media(max-width:900px){.wz{grid-template-columns:1fr}}
+.steps{display:flex;gap:6px;margin-bottom:18px}
+.steps i{flex:1;height:6px;border-radius:3px;background:var(--card2);transition:.3s}
+.steps i.on{background:var(--g)}
+.wq h3{font-size:21px;font-weight:900;margin-bottom:2px}
+.wq>p{color:var(--mu);font-size:14.5px;margin-bottom:6px}
+.wnav{display:flex;gap:10px;margin-top:22px}
+.out{position:sticky;top:88px}
+.meter{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:12px 0}
+.meter div{text-align:center;font-size:12px;font-weight:800;color:var(--fa);padding:6px 2px;border-radius:9px;background:var(--card2);transition:.3s}
+.meter div.on{color:#fff;background:var(--ok)}
+.score{font-size:15px;font-weight:800}
+.ck{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border:1px solid var(--bd);border-radius:12px;background:var(--card);cursor:pointer;margin-top:8px;font-size:14.5px}
+.ck input{margin-top:6px;accent-color:var(--a);width:17px;height:17px;flex:none}
+.ck b{display:block}
+.ck span{color:var(--mu);font-size:13.5px}
+.tabs2{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+
+/* tools */
+.tc{display:flex;flex-direction:column;gap:8px}
+.tc .th{display:flex;align-items:center;gap:12px}
+.tc .av{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-weight:900;font-size:18px;color:#fff;flex:none}
+.tc h3{margin:0;font-size:17px}
+.tc small{color:var(--fa);font-size:12.5px;direction:ltr;display:block;text-align:start}
+.tags{display:flex;gap:6px;flex-wrap:wrap}
+.tags span{font-size:12px;padding:2px 9px;border-radius:99px;background:var(--card2);color:var(--mu);font-weight:700}
+.note{font-size:13.5px;color:var(--mu);background:color-mix(in srgb,var(--warn) 9%,transparent);border:1px solid color-mix(in srgb,var(--warn) 30%,transparent);border-radius:12px;padding:10px 14px;margin-bottom:18px}
+
+/* learn */
+.mod{cursor:pointer}
+.mod .pbar{height:6px;background:var(--card2);border-radius:3px;margin-top:12px;overflow:hidden}
+.mod .pbar i{display:block;height:100%;background:var(--g);transition:width .4s}
+.lsn{display:grid;gap:14px}
+.ls{background:var(--card);border:1px solid var(--bd);border-radius:var(--r);overflow:hidden}
+.ls summary{cursor:pointer;padding:16px 20px;font-weight:800;font-size:17px;display:flex;align-items:center;gap:12px;list-style:none}
+.ls summary::-webkit-details-marker{display:none}
+.ls summary .n{width:30px;height:30px;border-radius:9px;background:var(--card2);display:grid;place-items:center;font-size:14px;flex:none}
+.ls.done summary .n{background:var(--ok);color:#fff}
+.ls summary::after{content:"‹";margin-inline-start:auto;transition:.25s;color:var(--mu);font-size:22px;transform:rotate(-90deg)}
+.ls[open] summary::after{transform:rotate(90deg)}
+.ls .bd{padding:0 20px 18px 20px;color:var(--mu);font-size:15.5px;line-height:2}
+.ls .bd b{color:var(--tx)}
+.ls code{background:var(--card2);padding:1px 7px;border-radius:6px;direction:ltr;display:inline-block}
+.quiz{margin-top:26px}
+.qq{background:var(--card);border:1px solid var(--bd);border-radius:var(--r);padding:16px 18px;margin-bottom:12px}
+.qq h4{font-size:16px;margin-bottom:10px}
+.qq .opts{display:flex;gap:8px;flex-wrap:wrap}
+.qq .opts button{padding:7px 14px;border-radius:10px;border:1px solid var(--bd);background:var(--bg2);cursor:pointer;font-weight:700;font-size:14px}
+.qq .opts button.r{background:var(--ok);color:#fff;border-color:transparent}
+.qq .opts button.w{background:var(--bad);color:#fff;border-color:transparent}
+.gl{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.gl div{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:14px 16px}
+.gl b{direction:ltr;display:block;text-align:start;color:var(--a);font-size:16px}
+.gl span{color:var(--mu);font-size:14.5px}
+
+/* sites */
+.stype{cursor:pointer;padding:14px}
+.stype.on{border-color:var(--a);background:color-mix(in srgb,var(--a) 10%,var(--card))}
+.stype h3{font-size:15.5px;margin:6px 0 0}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:640px){.row2{grid-template-columns:1fr}}
+.colors{display:flex;gap:10px;align-items:center}
+.colors input[type=color]{width:52px;height:44px;border:1px solid var(--bd);border-radius:10px;background:var(--bg2);cursor:pointer;padding:3px}
+
+/* search palette */
+.pal .mbox{max-width:680px;padding:16px}
+.res{max-height:60vh;overflow:auto;margin-top:10px}
+.res button{display:flex;gap:12px;align-items:center;width:100%;text-align:start;padding:10px 12px;border:0;background:none;border-radius:10px;cursor:pointer}
+.res button:hover,.res button.sel{background:var(--card2)}
+.res button small{color:var(--mu);display:block;font-size:12.5px}
+.res button em{font-style:normal;font-size:12px;color:var(--a);font-weight:800;margin-inline-start:auto;white-space:nowrap}
+
+/* toast/footer */
+.toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,30px);opacity:0;background:var(--tx);color:var(--bg);padding:10px 20px;border-radius:99px;font-weight:800;z-index:200;transition:.3s;pointer-events:none}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+.totop{position:fixed;bottom:22px;inset-inline-end:22px;z-index:40;opacity:0;pointer-events:none;transition:.3s}
+.totop.on{opacity:1;pointer-events:auto}
+footer{border-top:1px solid var(--bd);padding:30px 0;color:var(--mu);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+footer b{color:var(--tx);letter-spacing:1px}
+@media print{header,footer,.totop{display:none}}
+</style>
+</head>
+<body>
+<header><div class="wrap hd">
+  <button class="ib menu" id="mBtn" aria-label="القائمة"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  <a class="logo" href="#home"><i>✦</i><span>AI <span class="gt">ATLAS</span></span></a>
+  <nav class="main" id="nav">
+    <a href="#home" data-p="home">الرئيسية</a>
+    <a href="#learn" data-p="learn">📖 اتعلّم</a>
+    <a href="#prompts" data-p="prompts">📚 مكتبة البرومبتات</a>
+    <a href="#wizard" data-p="wizard">🪄 اعمل برومبتك</a>
+    <a href="#sites" data-p="sites">🧱 ابنِ موقع / SaaS</a>
+    <a href="#tools" data-p="tools">🧰 أدوات الـ AI</a>
+    <a href="#favs" data-p="favs">⭐ محفوظاتي</a>
+  </nav>
+  <button class="sbtn" id="sOpen"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span>ابحث في كل حاجة</span><kbd>Ctrl K</kbd></button>
+  <button class="ib" id="favBtn" aria-label="المحفوظات" onclick="location.hash='favs'">⭐<span class="cnt" id="favCnt">0</span></button>
+  <button class="ib" id="thBtn" aria-label="تبديل الوضع"><svg viewBox="0 0 24 24" id="thIc"></svg></button>
+</div></header>
+
+<main class="wrap">
+<!-- HOME -->
+<section class="pg" id="p-home">
+  <div class="hero">
+    <span class="kick">✦ منصة واحدة بدل ١٠٠ تاب مفتوحة</span>
+    <h1>أطلس <span class="gt">الذكاء الاصطناعي</span><small>اتعلّم · اكتب البرومبت الصح · اختار الأداة الصح · ابنِ موقعك</small></h1>
+    <p>كل اللي محتاجه عشان تشتغل بالـ AI صح في مكان واحد: شرح مبسّط بالمصري، مئات البرومبتات الجاهزة لكل شغلانة، مُنشئ برومبت بالأسئلة، برومبتات بناء مواقع و SaaS، ودليل لأشهر أدوات الـ AI.</p>
+    <div class="cta"><a class="btn pr" href="#wizard">🪄 اعمل برومبتك دلوقتي</a><a class="btn" href="#prompts">📚 تصفّح المكتبة</a><a class="btn" href="#learn">📖 ابدأ المذاكرة</a></div>
+    <div class="stats" id="stats"></div>
+  </div>
+  <div class="potd" id="potd"></div>
+  <h2 class="st">✦ تعمل إيه هنا؟</h2>
+  <div class="grid g4" id="homeCards"></div>
+  <h2 class="st">⚡ المعادلة اللي هتفرق معاك</h2>
+  <div class="grid g4" id="clearCards"></div>
+</section>
+
+<!-- LEARN -->
+<section class="pg" id="p-learn">
+  <div class="ph"><span class="kick">📖 المذاكرة</span><h1>اتعلّم الـ AI <span class="gt">خطوة بخطوة</span></h1><p>ملخص الجلسات بالمصري — افتح كل درس، علّم عليه إنك خلّصته، واختبر نفسك في الآخر.</p></div>
+  <div id="learnBody"></div>
+</section>
+
+<!-- PROMPTS -->
+<section class="pg" id="p-prompts">
+  <div class="ph"><span class="kick">📚 المكتبة</span><h1>برومبت جاهز <span class="gt">لكل شغلانة</span></h1><p>اختار التصنيف، دوس «املأ واستخدم» واكتب بياناتك مكان اللي بين [أقواس] — البرومبت يتظبط لوحده وتنسخه.</p></div>
+  <div class="srch"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input class="inp" id="pq" placeholder="ابحث: إيميل، CV، إعلان، إكسيل، كود…"></div>
+  <div class="lay"><div class="side" id="pcats"></div><div><div class="grid g3" id="plist"></div></div></div>
+</section>
+
+<!-- WIZARD -->
+<section class="pg" id="p-wizard">
+  <div class="ph"><span class="kick">🪄 مُنشئ البرومبت</span><h1>جاوب على كام سؤال.. <span class="gt">وخد برومبت محترف</span></h1><p>البرومبت بيتبني قدامك بإطار CLEAR وانت بتجاوب. أو قيّم برومبت كتبته بنفسك.</p></div>
+  <div class="tabs2"><button class="chip on" data-wt="build">🪄 ابنِ برومبت بالأسئلة</button><button class="chip" data-wt="rate">🎯 قيّم برومبتي</button></div>
+  <div id="wBuild" class="wz">
+    <div class="card"><div class="steps" id="wSteps"></div><div class="wq" id="wQ"></div>
+      <div class="wnav"><button class="btn" id="wPrev">→ السابق</button><button class="btn pr" id="wNext">التالي ←</button><button class="btn sm" id="wReset" style="margin-inline-start:auto">ابدأ من جديد</button></div></div>
+    <div class="card out"><h3 style="margin:0">✨ البرومبت بتاعك</h3>
+      <div class="meter" id="wMeter"></div><div class="score" id="wScore"></div>
+      <div class="prev" id="wOut" style="margin-top:10px"></div>
+      <div class="acts" style="margin-top:14px"><button class="btn pr sm" id="wCopy">📋 انسخ</button><button class="btn sm" id="wSave">⭐ احفظ</button><a class="btn sm" id="wGpt" target="_blank" rel="noopener">افتح في ChatGPT ↗</a><a class="btn sm" id="wCl" target="_blank" rel="noopener">افتح في Claude ↗</a></div></div>
+  </div>
+  <div id="wRate" class="wz" style="display:none">
+    <div class="card"><label class="lb" style="margin-top:0">الصق البرومبت بتاعك</label><textarea class="inp" id="rIn" style="min-height:220px" placeholder="مثال: اكتبلي عن التسويق"></textarea><div class="acts" style="margin-top:12px"><button class="btn pr" id="rGo">🎯 قيّم</button><button class="btn" id="rFix">✨ هات برومبت يحسّنه</button></div></div>
+    <div class="card out" id="rOut"><p style="color:var(--mu)">التقييم هيظهر هنا: درجة من ١٠ على معايير CLEAR، ونصايح تحسين.</p></div>
+  </div>
+</section>
+
+<!-- SITES -->
+<section class="pg" id="p-sites">
+  <div class="ph"><span class="kick">🧱 بناء المواقع و SaaS</span><h1>ابنِ موقع كامل <span class="gt">في ملف HTML واحد</span></h1><p>اختار نوع الموقع والمميزات، والموقع يكتبلك "برومبت المطوّر" كامل تحطه في Claude أو ChatGPT ويطلعلك موقع شغال. وتحت برومبتات للتعديل والتصليح والنشر.</p></div>
+  <div class="card">
+    <label class="lb" style="margin-top:0">١) نوع الموقع</label><div class="grid g4" id="sTypes" style="grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px"></div>
+    <div class="row2"><div><label class="lb">٢) اسم المشروع</label><input class="inp" id="sName" placeholder="مثلاً: كافيه بن البلد"></div><div><label class="lb">الجمهور</label><input class="inp" id="sAud" placeholder="مثلاً: طلبة جامعة في أسوان"></div></div>
+    <div class="row2"><div><label class="lb">٣) اللغة</label><div class="chips" id="sLang"></div></div><div><label class="lb">٤) الألوان والإحساس</label><div class="colors"><input type="color" id="sC1" value="#7c3aed"><input type="color" id="sC2" value="#ec4899"><select class="inp" id="sMood"><option>حديث ونظيف</option><option>فخم وراقي</option><option>مرح وملوّن</option><option>تقني ومستقبلي</option><option>بسيط ومينيمال</option></select></div></div></div>
+    <label class="lb">٥) المميزات</label><div class="chips" id="sFeat"></div>
+    <label class="lb">٦) تفاصيل إضافية <small>(محتوى، أقسام، خدمات، أسعار…)</small></label><textarea class="inp" id="sMore" placeholder="مثلاً: عندنا ٣ فروع، أرقام التواصل…، عاوز قسم للعروض الأسبوعية"></textarea>
+  </div>
+  <div class="card" style="margin-top:16px"><h3 style="margin:0 0 8px">🧾 برومبت المطوّر الجاهز</h3><div class="prev" id="sOut"></div>
+    <div class="acts" style="margin-top:14px"><button class="btn pr sm" id="sCopy">📋 انسخ البرومبت</button><button class="btn sm" id="sSave">⭐ احفظ</button><a class="btn sm" id="sCl" target="_blank" rel="noopener">افتح في Claude ↗</a><a class="btn sm" id="sGpt" target="_blank" rel="noopener">افتح في ChatGPT ↗</a></div>
+    <p style="color:var(--mu);font-size:13.5px;margin-top:10px">💡 بعد ما الكود يطلع: احفظه في ملف اسمه <code>index.html</code> وافتحه في المتصفح. أي تعديل اطلبه بالبرومبتات اللي تحت.</p></div>
+  <h2 class="st">🔧 برومبتات البناء والتعديل والنشر</h2>
+  <div class="grid g3" id="bList"></div>
+</section>
+
+<!-- TOOLS -->
+<section class="pg" id="p-tools">
+  <div class="ph"><span class="kick">🧰 دليل الأدوات</span><h1>كل أدوات الـ AI <span class="gt">مترتبة حسب الاستخدام</span></h1><p>قول عاوز تعمل إيه، والدليل يقولك الأداة المناسبة. متتوهش — اتقن أداة شات واحدة وضيف المتخصص لما تحتاجه.</p></div>
+  <div class="note">⚠️ أدوات الـ AI بتتغير بسرعة (أسعار، مميزات، أسماء). افتح موقع الأداة واتأكد قبل ما تعتمد عليها، ومتحطش بيانات سرية في أي أداة.</div>
+  <div class="srch"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input class="inp" id="tq" placeholder="ابحث: فيديو، تعليق صوتي، ترجمة، موقع، إكسيل…"></div>
+  <div class="chips" id="tcats" style="margin-bottom:20px"></div>
+  <div class="grid g4" id="tlist"></div>
+</section>
+
+<!-- FAVS -->
+<section class="pg" id="p-favs">
+  <div class="ph"><span class="kick">⭐ محفوظاتي</span><h1>البرومبتات <span class="gt">اللي حفظتها</span></h1><p>بتتحفظ على المتصفح ده. تقدر تصدّرها ملف نصي.</p></div>
+  <div class="acts" style="margin-bottom:18px"><button class="btn sm" id="fExp">⬇️ صدّر المحفوظات</button><button class="btn sm" id="fClr">🗑️ امسح الكل</button></div>
+  <div class="grid g3" id="flist"></div>
+</section>
+</main>
+
+<footer><div class="wrap"><div>تنفيذ <b>ZYAD MAMDOUH</b> · AI ATLAS</div><div>الـ AI مساعد طيار.. مش الطيار — القرار الأخير قرارك ✈️</div></div></footer>
+
+<!-- fill modal -->
+<div class="md" id="fm"><div class="mbox"><h3><span id="fmT"></span><button class="ib x" onclick="closeM('fm')">✕</button></h3>
+  <div class="fill"><div id="fmF"></div><div><label class="lb" style="margin-top:0">المعاينة</label><div class="prev" id="fmP"></div></div></div>
+  <div class="acts" style="margin-top:16px"><button class="btn pr" id="fmC">📋 انسخ البرومبت</button><button class="btn" id="fmS">⭐ احفظ النسخة دي</button><a class="btn" id="fmG" target="_blank" rel="noopener">ChatGPT ↗</a><a class="btn" id="fmCl" target="_blank" rel="noopener">Claude ↗</a></div></div></div>
+<!-- search palette -->
+<div class="md pal" id="sp"><div class="mbox"><div class="srch" style="margin:0"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input class="inp" id="spI" placeholder="ابحث في البرومبتات والأدوات والدروس…" autocomplete="off"></div><div class="res" id="spR"></div></div></div>
+<div class="toast" id="toast"></div>
+<button class="ib totop" id="toTop" aria-label="لفوق">↑</button>
+
+<script>
+/* ================= DATA ================= */
+/* ---------- PROMPT LIBRARY ---------- */
+const PROMPTS=[
+{id:'study',ic:'📚',n:'المذاكرة والتعلّم',p:[
+['اشرحلي كأني مبتدئ','اشرحلي [الموضوع] كأني مبتدئ تمامًا. استخدم تشبيه من الحياة اليومية في مصر، وبعدين ٣ أمثلة عملية، وفي الآخر ٥ أسئلة أختبر بيها نفسي (والإجابات تحت لوحدها).'],
+['ملخص للمذاكرة','لخّص النص ده في شكل مذكرة مذاكرة: عناوين رئيسية، نقط قصيرة، المصطلحات المهمة بخط واضح، وجدول مقارنة لو فيه حاجات بتتقارن. استخدم النص بس ومتضيفش معلومات من برّه.\nالنص: [الصق النص]'],
+['خطة مذاكرة','عندي امتحان [المادة] بعد [عدد الأيام] يوم. المنهج: [الفصول/المواضيع]. بقدر أذاكر [عدد الساعات] ساعة في اليوم. اعملي جدول مذاكرة يوم بيوم فيه مراجعة متكررة (Spaced repetition) ويوم أخير للمراجعة الشاملة.'],
+['امتحنّي','اعمل امتحان على [الموضوع] فيه ١٠ أسئلة اختيار من متعدد بمستوى [سهل/متوسط/صعب]. اسألني سؤال واحد كل مرة، واستنى إجابتي، وبعد كل إجابة قولي صح ولا غلط وليه.'],
+['فلاش كاردز','حوّل المحتوى ده لـ ٢٠ فلاش كارد بالشكل ده: وش الكارت (سؤال قصير) | ضهر الكارت (إجابة في سطر). اعرضهم في جدول.\nالمحتوى: [الصق]'],
+['تقنية فاينمان','أنا هشرحلك [المفهوم] بكلامي. قيّم شرحي: إيه الصح، إيه الناقص، وإيه الغلط، وبعدين اديني نسخة مظبوطة أبسط.\nشرحي: [اكتب شرحك]'],
+['حل مسألة خطوة بخطوة','حل المسألة دي خطوة بخطوة واشرح سبب كل خطوة. متديش الإجابة النهائية على طول — ادّيني تلميح الأول وأنا أحاول.\nالمسألة: [المسألة]'],
+['خريطة ذهنية','اعمل خريطة ذهنية (Mind map) لموضوع [الموضوع] بصيغة نقاط متداخلة (Markdown) فيها الفكرة الرئيسية، ٥ فروع، وتحت كل فرع ٣ نقاط.'],
+['خطة تعلّم مهارة','عاوز أتعلم [المهارة] من الصفر لمستوى [المستوى] في [المدة]. اعملي خطة أسبوعية فيها: المفاهيم، مشروع صغير كل أسبوع، ومصادر مقترحة (وقولّي أتأكد إنها لسه موجودة).']]},
+{id:'write',ic:'✍️',n:'الكتابة والمحتوى',p:[
+['مقال كامل','اكتب مقال عن [الموضوع] لجمهور [الجمهور]، طوله حوالي [عدد الكلمات] كلمة، بأسلوب [رسمي/بسيط/مصري]. فيه: عنوان جذاب، مقدمة بخطّاف، ٣–٥ عناوين فرعية، وخاتمة فيها دعوة لفعل.'],
+['إعادة صياغة','أعد صياغة النص ده بأسلوب [أبسط/أرسمي/أقصر/أكثر إقناعًا] من غير ما تغيّر المعنى. اعرض ٣ نسخ مختلفة.\nالنص: [الصق]'],
+['تدقيق لغوي','صحّح الأخطاء الإملائية والنحوية في النص ده، واعرض جدول بالأخطاء: الكلمة الغلط | الصح | السبب. وبعدين النص المصحح كامل.\nالنص: [الصق]'],
+['عناوين جذابة','اكتب ١٥ عنوان مختلف لـ [الموضوع/المقال]، نوّع بين: سؤال، رقم، فضول، فايدة مباشرة. علّم على أحسن ٣ وقول ليه.'],
+['قصة قصيرة','اكتب قصة قصيرة عن [الفكرة] للـ [الفئة العمرية]، في حدود [عدد الكلمات] كلمة، فيها شخصية رئيسية واضحة، مشكلة، ونهاية فيها درس عن [القيمة].'],
+['سكريبت فيديو','اكتب سكريبت فيديو [المدة] ثانية عن [الموضوع] لـ [المنصة]. قسّمه: خطّاف أول ٣ ثواني، المحتوى، دعوة لفعل. وجنب كل جزء اكتب المشهد اللي يظهر على الشاشة.'],
+['اكتب بأسلوبي','دي ٣ نماذج من كتابتي: [الصق النماذج]. حلّل أسلوبي (طول الجمل، الكلمات اللي بكررها، النبرة). بعدين اكتب [المطلوب] بنفس الأسلوب بالظبط.'],
+['من نقاط لنص','حوّل النقاط دي لنص متماسك وسلس مناسب لـ [المكان: إيميل/تقرير/بوست]:\n[النقاط]']]},
+{id:'mkt',ic:'📣',n:'التسويق والسوشيال ميديا',p:[
+['خطة محتوى شهر','اعمل خطة محتوى لمدة ٣٠ يوم لصفحة [النشاط] على [المنصة]. الجمهور: [الجمهور]. الهدف: [زيادة مبيعات/تفاعل/وعي]. اعرضها في جدول: اليوم | نوع البوست | الفكرة | الـ Hook | الـ CTA.'],
+['بوستات جاهزة','اكتب ٥ بوستات لـ [المنتج/الخدمة] بالعامية المصرية. كل بوست: Hook قوي + Caption + CTA + ٥ هاشتاجات. من غير مبالغة ولا وعود مش حقيقية.'],
+['إعلان ممول','اكتب ٣ نسخ إعلان فيسبوك لـ [العرض] موجّه لـ [الجمهور] في [المدينة]. كل نسخة بزاوية مختلفة (ألم/فايدة/دليل اجتماعي). اقترح كمان عنوان الإعلان ووصف الصورة.'],
+['شخصية العميل','اعمل Buyer Persona لعميل [المنتج]: السن، الشغل، الدخل التقريبي، المشاكل، الاعتراضات، بيقضي وقته فين أونلاين، وإيه الكلام اللي يقنعه.'],
+['تحليل منافسين','دي معلومات عن منافسيني: [الصق]. حللها بـ SWOT، وطلعلي ٥ فرص أتميز بيها عنهم. (اعتمد على اللي كتبته بس، ولو محتاج معلومة قولّي).'],
+['أفكار ريلز','اديني ١٠ أفكار ريلز لـ [النشاط]، كل فكرة: الفكرة في سطر، أول جملة تتقال، والمشهد. ركّز على الترندات اللي ممكن تتعمل بموبايل.'],
+['رد على كومنت سلبي','عميل كتب الكومنت ده على صفحتنا: "[الكومنت]". اكتب ٣ ردود مهذبة واحترافية تحتوي الموقف وتنقل الكلام للخاص.'],
+['اسم وشعار نصي','اقترح ٢٠ اسم لـ [فكرة المشروع] (عربي وإنجليزي)، قصيرة وسهلة النطق، وجنب كل اسم Slogan في ٥ كلمات. (أنا هتأكد إن الاسم مش مسجّل).']]},
+{id:'sales',ic:'🤝',n:'المبيعات وخدمة العملاء',p:[
+['سكريبت مكالمة بيع','اكتب سكريبت مكالمة بيع لـ [المنتج] لعميل [نوع العميل]: افتتاحية، أسئلة اكتشاف الاحتياج، عرض الفايدة، الرد على أشهر ٥ اعتراضات، والقفلة.'],
+['الرد على الاعتراضات','العملاء بيقولوا الاعتراضات دي على [المنتج]: [الاعتراضات]. اكتب لكل اعتراض ردين: واحد منطقي وواحد عاطفي، بأسلوب محترم مش ضاغط.'],
+['ردود واتساب جاهزة','اعمل ١٥ رد جاهز (Quick replies) لخدمة عملاء [النشاط] على واتساب: ترحيب، الأسعار، المواعيد، العنوان، الشكوى، المتابعة بعد الشراء… بالعامية وبشكل ودود.'],
+['رد على شكوى','العميل اشتكى: "[الشكوى]". اكتب رد يعتذر بصدق، يوضح الخطوة الجاية، ويقترح تعويض مناسب. طول الرد ٤ سطور بالكتير.'],
+['عرض سعر','اكتب عرض سعر احترافي لـ [العميل] على [الخدمة]: مقدمة، نطاق الشغل، المدة، السعر [السعر]، شروط الدفع، والخطوة الجاية.'],
+['متابعة عميل','عميل سأل عن [الخدمة] من [المدة] ومردّش. اكتب ٣ رسايل متابعة متدرجة (بعد يوم، ٣ أيام، أسبوع) من غير إلحاح.']]},
+{id:'biz',ic:'💼',n:'البيزنس وريادة الأعمال',p:[
+['تقييم فكرة مشروع','عندي فكرة: [الفكرة] في [المدينة]. قيّمها بصراحة: المشكلة اللي بتحلها، الجمهور، المنافسين المحتملين، طرق الربح، أكبر ٥ مخاطر، وأرخص طريقة أجرّبها بيها في أسبوعين.'],
+['خطة عمل مختصرة','اكتب Business Plan مختصرة (صفحة واحدة) لـ [المشروع] على نموذج Lean Canvas، واعرضها في جدول.'],
+['تسعير خدمة','بقدّم [الخدمة] لـ [الجمهور]، التكلفة عليّ حوالي [التكلفة]. اقترح ٣ باقات (أساسي/متوسط/مميز) بالمميزات، ومنطق التسعير، وإزاي أعرضهم.'],
+['تحليل SWOT','اعمل تحليل SWOT لـ [النشاط] بناءً على المعلومات دي: [المعلومات]. وبعدين اديني ٥ إجراءات عملية للشهر الجاي.'],
+['أهداف SMART','حوّل الهدف ده لأهداف SMART مع مؤشرات قياس (KPIs) وخطة ٩٠ يوم: [الهدف].'],
+['محضر اجتماع','حوّل ملاحظات الاجتماع دي لمحضر رسمي: الحضور، النقاط اللي اتناقشت، القرارات، المهام (مين/إيه/إمتى) في جدول.\nالملاحظات: [الصق]']]},
+{id:'mail',ic:'📧',n:'الإيميلات والتواصل المهني',p:[
+['إيميل رسمي','اكتب إيميل [رسمي/ودّي] لـ [المستلم] بخصوص [الموضوع]. الهدف: [المطلوب منه]. قصير، فيه Subject واضح، وطلب محدد في الآخر.'],
+['تذكير بفاتورة','اكتب إيميل مؤدب لـ [العميل/المورد] نفكّره بفاتورة رقم [الرقم] متأخرة [المدة]، بأسلوب ودّي وقصير ومحدد.'],
+['اعتذار احترافي','اكتب إيميل اعتذار لـ [الشخص] عن [المشكلة]: اعتراف بالمشكلة، السبب باختصار من غير تبرير، الحل، وإيه اللي هيتعمل عشان ماتتكررش.'],
+['رفض بلباقة','اكتب رد أرفض فيه [الطلب] بلباقة، وأقترح بديل [البديل لو فيه]، مع الحفاظ على العلاقة.'],
+['تلخيص سلسلة إيميلات','لخّص الإيميلات دي: إيه الموضوع، إيه اللي اتفقنا عليه، إيه المعلّق، وإيه المطلوب مني أنا تحديدًا.\n[الصق]'],
+['رسالة لينكدإن','اكتب رسالة تعارف قصيرة على لينكدإن لـ [الشخص/الوظيفة] أطلب فيها [الطلب]. ٥ سطور بالكتير، شخصية ومش محفوظة.']]},
+{id:'career',ic:'🎯',n:'الوظايف والـ CV والانترفيو',p:[
+['تحسين الـ CV','ده الـ CV بتاعي: [الصق]. والوظيفة دي: [الصق الإعلان]. عدّل الـ CV عشان يناسب الوظيفة ويعدّي أنظمة ATS: كلمات مفتاحية، إنجازات بأرقام، وصياغة بأفعال قوية. متألّفش خبرات مش عندي.'],
+['Cover letter','اكتب Cover Letter لوظيفة [الوظيفة] في [الشركة]، بناءً على خبرتي: [الخبرة]. ٣ فقرات، شخصية ومش عامة.'],
+['محاكاة انترفيو','اعمل معايا انترفيو لوظيفة [الوظيفة]. اسألني سؤال واحد كل مرة واستنى إجابتي، وبعد كل إجابة قيّمها من ١٠ وقولّي أحسّنها إزاي. ابدأ بسؤال "عرّفني بنفسك".'],
+['أسئلة متوقعة','اديني أكتر ٢٠ سؤال متوقع في انترفيو [الوظيفة] (تقني + سلوكي)، ولكل سؤال إجابة نموذجية بطريقة STAR.'],
+['بروفايل لينكدإن','اكتب Headline و About لبروفايل لينكدإن بتاعي. أنا [المجال]، خبرتي [الخبرة]، وعاوز أوصل لـ [الهدف].'],
+['تفاوض على المرتب','اتعرض عليّ [العرض]. اعملّي سكريبت تفاوض مهذب أطلب فيه [المطلوب]، مع الردود على الاعتراضات المتوقعة.']]},
+{id:'free',ic:'💻',n:'الفريلانس',p:[
+['وصف خدمة على خمسات','اكتب وصف خدمة على خمسات/مستقل لـ [الخدمة]: عنوان جذاب، وصف فيه المشكلة والحل، اللي هيستلمه العميل بالظبط، مدة التسليم، والتطويرات الإضافية. عربي واضح وبدون مبالغة.'],
+['عرض على مشروع','ده وصف مشروع على منصة عمل حر: [الصق]. اكتب عرض (Proposal) قصير وشخصي: إني فهمت المطلوب، خطة التنفيذ في ٣ خطوات، المدة، وسؤال ذكي للعميل.'],
+['بورتفوليو','عندي الشغل ده: [المشاريع]. اكتب لكل مشروع Case study قصيرة: المشكلة، اللي عملته، النتيجة.'],
+['تحديد السعر','أنا [المجال] مستوايا [المستوى]. ساعدني أحدد سعر [الخدمة] على منصات العمل الحر بمنطق: الوقت، القيمة، المنافسين. واقترح سعر بداية وسعر بعد أول ٥ تقييمات.'],
+['التعامل مع عميل صعب','العميل طلب تعديلات كتير برّه الاتفاق: [الموقف]. اكتب رد محترم يوضح نطاق الشغل ويقترح تسعير للتعديلات الإضافية.']]},
+{id:'code',ic:'🧑‍💻',n:'البرمجة والكود',p:[
+['اشرح الكود','اشرح الكود ده سطر بسطر لمبتدئ، وقولّي لو فيه أخطاء أو حاجات ممكن تتحسن:\n```\n[الصق الكود]\n```'],
+['صلّح الخطأ','الكود ده بيطلع الخطأ ده: [رسالة الخطأ]. اللغة: [اللغة]. فسّر سبب الخطأ، وادّيني الكود المصحح، وقولّي أتجنبه إزاي بعد كده.\n```\n[الكود]\n```'],
+['اكتب Function','اكتب Function بلغة [اللغة] بتعمل [الوظيفة]. المدخلات: [..]. المخرجات: [..]. ضيف تعليقات، تعامل مع الحالات الغلط، و٣ أمثلة اختبار.'],
+['Code review','راجع الكود ده كـ Senior developer: الأمان، الأداء، القراءة، التسمية. اعرض الملاحظات في جدول (الأولوية | المشكلة | الحل) وبعدين النسخة المحسنة.\n[الكود]'],
+['Regex / SQL','اكتب [Regex/SQL query] بيعمل: [المطلوب]. اشرحه جزء جزء، واديني أمثلة بتطابق وأمثلة مش بتطابق.'],
+['حوّل من لغة للغة','حوّل الكود ده من [اللغة الأولى] لـ [اللغة التانية] بأفضل الممارسات في اللغة الجديدة، مش ترجمة حرفية.\n[الكود]'],
+['اكتب سكريبت أتمتة','اكتب سكريبت Python يعمل [المهمة: مثلاً يغيّر أسماء ملفات/يدمج ملفات إكسيل]. اشرح أشغّله إزاي خطوة بخطوة على [ويندوز/ماك] لواحد مبتدئ.']]},
+{id:'data',ic:'📊',n:'تحليل البيانات والإكسيل',p:[
+['معادلة إكسيل','عاوز معادلة Excel/Google Sheets تعمل [المطلوب]. البيانات في الأعمدة: [وصف الأعمدة]. اشرح المعادلة واديني مثال.'],
+['تحليل جدول','دي بيانات [المبيعات/العملاء]: [الصق أو ارفع الملف]. حللها: أهم ٥ ملاحظات، اتجاهات، قيم شاذة، واقترح ٣ رسوم بيانية مناسبة. لو هتحسب أرقام، احسبها بالكود واعرض طريقتك.'],
+['داشبورد','اقترح تصميم Dashboard لمتابعة [النشاط]: المؤشرات (KPIs)، نوع الرسم لكل مؤشر، ومصدر البيانات. واعمل خطوات تنفيذه في [Excel/Power BI/Looker Studio].'],
+['تنظيف بيانات','البيانات دي فيها مشاكل (تكرار، مسافات، تواريخ بصيغ مختلفة): [الصق عينة]. اديني خطوات التنظيف في [Excel/Python] بالترتيب.'],
+['Pivot Table','اشرحلي أعمل Pivot Table تجاوب على السؤال ده: [السؤال] من البيانات اللي أعمدتها: [الأعمدة]، خطوة بخطوة.'],
+['من أرقام لقصة','حوّل الأرقام دي لـ ٥ استنتاجات بلغة بسيطة لمدير مش بتاع أرقام، مع توصية لكل استنتاج: [الأرقام]']]},
+{id:'img',ic:'🎨',n:'التصميم وتوليد الصور',p:[
+['برومبت صورة احترافي','Create a [style: photorealistic/3D/flat illustration] image of [subject], [action], in [setting]. Lighting: [soft/golden hour/studio]. Camera: [close-up/wide], [lens]. Colors: [palette]. Mood: [mood]. Aspect ratio [16:9/9:16/1:1]. No text, no watermark.'],
+['بوستر إعلاني','صمّم فكرة بوستر لـ [المنتج/العرض]: العنوان الرئيسي، النص الفرعي، الـ CTA، توزيع العناصر، الألوان، ونوع الصورة. وبعدين اكتب برومبت إنجليزي لتوليد الخلفية من غير كلام.'],
+['صورة منتج','Product photography of [product] on [surface], [background], soft studio lighting, high detail, commercial look, shallow depth of field, clean composition, 4k.'],
+['هوية بصرية','اقترح هوية بصرية لـ [النشاط]: ٣ اتجاهات مختلفة، كل اتجاه فيه: باليتة ألوان (HEX)، خطين (عربي وإنجليزي)، شكل اللوجو كفكرة، والإحساس العام.'],
+['تحسين برومبت صورة','حسّن برومبت الصورة ده عشان يطلع نتيجة أدق: [البرومبت]. ضيف: الأسلوب، الإضاءة، الكادر، الألوان، والحاجات اللي مش عاوزها (Negative prompt).'],
+['ثمبنيل يوتيوب','اقترح ٣ أفكار Thumbnail لفيديو عن [الموضوع]: النص (٣ كلمات بالكتير)، تعبير الوش، العناصر، والألوان. واكتب برومبت صورة لكل فكرة.']]},
+{id:'video',ic:'🎬',n:'الفيديو والصوت',p:[
+['برومبت فيديو AI','[Shot type: drone/close-up/tracking] of [subject] [action] in [location], [time of day], cinematic lighting, [camera movement], realistic, 24fps, [duration] seconds, mood: [mood].'],
+['Storyboard','قسّم فكرة الفيديو دي لـ Storyboard من [عدد] مشاهد: [الفكرة]. لكل مشهد: المدة، اللي يظهر، حركة الكاميرا، النص على الشاشة، والصوت.'],
+['تعليق صوتي','اكتب نص تعليق صوتي مدته [المدة] ثانية لإعلان [المنتج] بالعامية المصرية، بنبرة [حماسية/هادية]. علّم الوقفات بـ (…) والكلمات المهمة بخط.'],
+['أغنية/جنجل','اكتب كلمات Jingle قصير وأصلي لـ [النشاط] بالعامية، ٨ سطور، سهل الحفظ، وفيه اسم النشاط، واقترح ستايل الموسيقى لأداة توليد الموسيقى.'],
+['ترجمة وتفريغ','فرّغ/لخّص الفيديو ده من الـ Transcript: [الصق]. طلّع: ملخص، أهم ٥ نقاط بالتوقيت، و٣ مقاطع تنفع ريلز.'],
+['أفكار بودكاست','اقترح ١٠ حلقات بودكاست عن [المجال]، لكل حلقة: العنوان، الضيف المقترح (نوعه)، و٥ أسئلة.']]},
+{id:'teach',ic:'👨‍🏫',n:'التدريس والتدريب',p:[
+['تحضير درس','حضّرلي درس [المدة] دقيقة عن [الموضوع] لـ [الفئة]: الأهداف، تمهيد بسؤال، الشرح على مراحل، نشاط جماعي، تقييم سريع، وواجب.'],
+['أسئلة نقاش','اكتب ٨ أسئلة نقاش لموضوع [الموضوع] تحفّز التفكير مش الحفظ، ولكل سؤال الإجابة المتوقعة في سطرين.'],
+['بنك أسئلة','اعمل بنك أسئلة عن [الموضوع]: ١٠ اختيار من متعدد، ٥ صح وغلط، ٣ مقالي. مع نموذج الإجابة وتوزيع الدرجات.'],
+['روبريك تقييم','اعمل Rubric لتقييم [المشروع/المهمة] على ٤ مستويات و٥ معايير، في جدول.'],
+['تشبيهات للشرح','اقترح ٥ تشبيهات من الحياة في مصر تشرح [المفهوم الصعب] لناس مش متخصصين.'],
+['نشاط تفاعلي','اقترح ٥ أنشطة تفاعلية لمدة ١٠ دقايق لشرح [الموضوع] في قاعة فيها [عدد] متدرب ومعاهم موبايلات.']]},
+{id:'prod',ic:'⏱️',n:'الإنتاجية وتنظيم الوقت',p:[
+['خطة الأسبوع','رتّب المهام دي [القائمة] حسب الأثر والاستعجال والمجهود، واقترح جدول مرن لأسبوع. المواعيد الثابتة: [..]. قولّي إيه اللي أأجّله أو أشيله.'],
+['مصفوفة أيزنهاور','صنّف المهام دي في مصفوفة أيزنهاور (مهم/عاجل) واعرضها في جدول ٢×٢، ومع كل مهمة اقتراح: أعملها/أجدولها/أفوّضها/أشيلها.\n[المهام]'],
+['تقسيم مهمة كبيرة','قسّم [المهمة الكبيرة] لخطوات صغيرة كل خطوة متخدش أكتر من ٣٠ دقيقة، بالترتيب، مع أول خطوة أعملها النهارده.'],
+['روتين يومي','ساعدني أعمل روتين يومي واقعي. بصحى [الوقت]، شغلي [المواعيد]، وعاوز أضيف [عادة/مذاكرة/رياضة]. اقترح جدول ونصايح للالتزام.'],
+['قرار صعب','بفكر بين [الاختيار أ] و[الاختيار ب]. اسألني ٥ أسئلة توضح أولوياتي الأول، وبعدين اعمل مقارنة مزايا/عيوب ومصفوفة قرار بأوزان.']]},
+{id:'research',ic:'🔎',n:'البحث والتحقق',p:[
+['لخّص من مصدري بس','لخّص النص ده لـ [الجمهور] في ٥ نقاط، من النص بس. أي معلومة مش موجودة قول عنها «النص مايذكرش ده».\nالنص: [الصق]'],
+['اكتشف الهلوسة','راجع الفقرة دي وطلّع كل ادعاء محتاج يتأكد منه (أرقام، تواريخ، أسماء، قوانين، روابط) في جدول: الادعاء | ليه مشكوك فيه | أتأكد منه إزاي.\n[الفقرة]'],
+['خطة بحث','عاوز أبحث عن [الموضوع]. اديني: الأسئلة الأساسية، الكلمات المفتاحية للبحث (عربي وإنجليزي)، نوع المصادر الموثوقة، وإزاي أقيّم المصدر.'],
+['مقارنة','قارن بين [أ] و[ب] و[ج] من حيث [المعايير] في جدول، وبعدين قولّي مين يناسب [حالتي]. وضّح أي معلومة ممكن تكون اتغيرت مؤخرًا.'],
+['الناقد الصريح','راجع ردّك اللي فات كمحرر ناقد: حدّد الادعاءات من غير دليل والكلام العام، وبعدين اكتب نسخة أدق. ماتقولش إن حاجة اتأكدت إلا لو اتأكدت فعلًا.'],
+['اشرح بحث علمي','اشرح البحث ده بلغة بسيطة: السؤال، الطريقة، النتيجة، الحدود، وإيه اللي يهمني منه عمليًا.\n[الصق الملخص]']]},
+{id:'lang',ic:'🌍',n:'الترجمة واللغات',p:[
+['ترجمة احترافية','ترجم النص ده من [اللغة] لـ [اللغة] بأسلوب [رسمي/تسويقي/بسيط] مناسب لجمهور [الجمهور]. ترجمة بالمعنى مش حرفية، وعلّم على أي مصطلح محتاج قرار مني.\n[النص]'],
+['مدرس لغة','اتكلم معايا بالإنجليزي عن [الموضوع] كأنك مدرس. مستوايا [المستوى]. بعد كل رد مني صحّح أخطائي باختصار وكمّل المحادثة.'],
+['كلمات وجمل','اديني ٢٠ كلمة/جملة إنجليزي مهمة في مجال [المجال]، مع النطق التقريبي بالعربي ومثال في جملة.'],
+['تعريب محتوى','حوّل المحتوى الإنجليزي ده لمحتوى عربي مصري طبيعي للسوشيال (Localization) مش ترجمة: [النص]']]},
+{id:'money',ic:'💰',n:'المحاسبة والفلوس',p:[
+['ميزانية شخصية','دخلي الشهري حوالي [الدخل] ومصاريفي الثابتة [المصاريف]. اعملي ميزانية بقاعدة 50/30/20 في جدول، واقترح ٥ طرق أوفر بيها. (للتخطيط مش استشارة مالية).'],
+['اشرح مفهوم محاسبي','اشرحلي [المفهوم: مثلاً الإهلاك/القيود المزدوجة/IFRS 15] بمثال رقمي بسيط وقيود اليومية بتاعته.'],
+['قيود يومية','اعمل قيود اليومية للعمليات دي مع الشرح: [العمليات]. وراجع إن المدين = الدائن.'],
+['تحليل قوائم مالية','دي أرقام من القوائم المالية: [الأرقام]. احسب أهم النسب (سيولة، ربحية، مديونية) بالكود أو خطوة بخطوة، وفسّر كل نسبة.'],
+['دراسة جدوى مبدئية','اعمل دراسة جدوى مبدئية لـ [المشروع]: التكاليف التأسيسية، التشغيلية، الإيرادات المتوقعة بـ ٣ سيناريوهات، ونقطة التعادل. وضّح الافتراضات.']]},
+{id:'hr',ic:'👥',n:'الموارد البشرية والإدارة',p:[
+['وصف وظيفي','اكتب Job Description لوظيفة [الوظيفة] في [الشركة/المجال]: الملخص، المهام، المتطلبات الأساسية، الإضافية، والمميزات.'],
+['أسئلة مقابلة','اكتب ١٥ سؤال مقابلة لوظيفة [الوظيفة] تقيس [المهارات]، مع اللي يميز الإجابة القوية من الضعيفة.'],
+['خطة Onboarding','اعمل خطة استقبال موظف جديد [الوظيفة] لأول ٣٠ يوم: أسبوع بأسبوع.'],
+['تقييم أداء','ساعدني أكتب تقييم أداء متوازن لموظف: نقاط قوته [..]، اللي محتاج يتحسن [..]. بأسلوب محترم ومحدد مع أهداف للفترة الجاية.'],
+['سياسة داخلية','اكتب مسودة سياسة [الحضور/الإجازات/استخدام الـ AI] لشركة صغيرة، بنود واضحة ومختصرة. (تتراجع من مختص قانوني قبل الاعتماد).']]},
+{id:'auto',ic:'⚙️',n:'الأتمتة و n8n',p:[
+['فكرة أتمتة','أنا بعمل المهام دي يدويًا كل يوم: [المهام]. اقترح أتمتة لكل مهمة بـ [n8n/Zapier/Make]: الـ Trigger، الخطوات، والأدوات المطلوبة.'],
+['Workflow n8n','صمّملي Workflow في n8n يعمل: [المطلوب]. اكتب الـ Nodes بالترتيب، إعدادات كل Node، والتعامل مع الأخطاء.'],
+['برومبت لـ AI Agent','اكتب System prompt لـ AI Agent بيرد على عملاء [النشاط] على [المنصة]: الشخصية، المعلومات اللي يعرفها [المعلومات]، الممنوعات، وإمتى يحوّل لبني آدم.'],
+['شات بوت أسئلة شائعة','حوّل المعلومات دي لـ ٢٠ سؤال وجواب (FAQ) أستخدمهم في شات بوت: [المعلومات]'],
+['تصنيف رسايل','اكتب برومبت يصنّف رسايل العملاء لـ [استفسار/شكوى/طلب شراء/أخرى] ويرجّع النتيجة JSON بالشكل ده: {"type":"","urgency":"","summary":""}']]},
+{id:'jobs',ic:'🧰',n:'برومبتات لكل مهنة',p:[
+['صاحب مطعم/كافيه','اقترح منيو جديد لـ [المطعم] فيه ٥ أصناف موسمية، أوصاف جذابة لكل صنف، وأفكار عروض للأيام الهادية.'],
+['محل صيانة كمبيوتر','اكتب Checklist لفحص لابتوب [المشكلة] خطوة بخطوة، ورسالة للعميل تشرح العطل والتكلفة بلغة بسيطة.'],
+['مدرس','حوّل الدرس ده لـ ٣ مستويات (ضعيف/متوسط/متفوق) بأنشطة مختلفة لكل مستوى: [الدرس]'],
+['مهندس','اكتب تقرير فني مختصر عن [المشكلة/المعاينة]: الوصف، الأسباب المحتملة، الحلول، التكلفة التقديرية، والتوصية.'],
+['محامي','لخّص العقد ده في نقاط، وطلّع البنود اللي محتاجة انتباه أو غامضة. (للمراجعة الأولية فقط — القرار للمحامي).\n[العقد]'],
+['صيدلي/طبيب','اكتب نشرة توعية بسيطة للمرضى عن [الموضوع الصحي] بلغة سهلة، مع "متى تروح للدكتور". (تتراجع من مختص قبل النشر).'],
+['عقارات','اكتب إعلان لـ [الوحدة: المساحة/المكان/المميزات] بـ ٣ أساليب، وقائمة أسئلة أسألها للعميل عشان أفهم احتياجه.'],
+['صاحب متجر أونلاين','اكتب وصف منتج لـ [المنتج] يبيع: المشكلة اللي بيحلها، المميزات كفوايد، المواصفات في جدول، وأسئلة شائعة.']]},
+{id:'think',ic:'🧠',n:'حل المشاكل والتفكير',p:[
+['تحليل السبب الجذري','عندي مشكلة: [المشكلة]. استخدم طريقة الـ 5 Whys وعظمة السمكة (Fishbone) عشان نوصل للسبب الجذري، واسألني لو محتاج معلومة.'],
+['عصف ذهني','اديني ٣٠ فكرة لـ [التحدي]: ١٠ عادية، ١٠ جريئة، ١٠ مجنونة. بعدين اختار أحسن ٣ قابلة للتنفيذ بميزانية [الميزانية].'],
+['محامي الشيطان','دي خطتي: [الخطة]. العب دور محامي الشيطان وطلّع أقوى ١٠ اعتراضات عليها، وبعدين اقترح إزاي أسد كل ثغرة.'],
+['قبعات التفكير الست','حلل [القرار/الفكرة] بقبعات التفكير الست لإدوارد دي بونو، فقرة لكل قبعة.'],
+['من وجهة نظر العميل','اتقمص دور [نوع العميل] واقرأ [العرض/الصفحة]: إيه اللي مش واضح؟ إيه اللي يخليك متشتريش؟ إيه اللي يقنعك؟\n[الصق]']]},
+{id:'meta',ic:'✨',n:'برومبتات بتعمل برومبتات',p:[
+['حسّن برومبتي','قيّم البرومبت ده من ١٠ على: وضوح المهمة، السياق، الجمهور، الشكل، التحقق. اشرح كل درجة، وبعدين اكتب نسخة محسّنة.\nالبرومبت: [الصقه هنا]'],
+['اسألني الأول','قبل ما تنفّذ [المهمة]، اسألني ٥ أسئلة بس لو إجاباتها هتغيّر النتيجة فعلًا، واستنى ردي. لو مفيش نقص، ابدأ واذكر افتراضاتك.'],
+['اكتبلي البرومبت','أنا عاوز أعمل [الهدف]. اكتبلي أحسن برومبت ممكن أستخدمه لـ [الأداة]، بإطار CLEAR (سياق، قيود، هدف، جمهور، شكل)، وسيب أماكن [بين أقواس] للحاجات اللي أنا هملاها.'],
+['خطة قبل التنفيذ','قبل ما تكتب أي حاجة في [المهمة]، اعرض خطتك في نقاط واستنى موافقتي. بعد ما أوافق، نفّذ جزء جزء.'],
+['حوّل الشات لبرومبت','لخّص المحادثة دي كلها في برومبت واحد أقدر أبدأ بيه شات جديد ويوصل لنفس النتيجة على طول.'],
+['خلّيه خبير','اتصرف كـ [الخبير] بخبرة ١٥ سنة. قبل ما ترد، فكّر في الأخطاء الشائعة اللي المبتدئين بيقعوا فيها في [الموضوع] ونبّهني ليها.']]}
+];
+
+/* ---------- WEBSITE / SAAS BUILDER ---------- */
+const SITE_TYPES=[
+['landing','🚀','صفحة هبوط (Landing page)','صفحة تبيع منتج أو كورس: Hero بعنوان قوي، المميزات، آراء العملاء (Placeholder واضح إنه مثال)، الأسعار، أسئلة شائعة، وزرار تواصل واتساب.'],
+['portfolio','🧑‍🎨','بورتفوليو شخصي','بورتفوليو: نبذة، مهارات، معرض أعمال بفلتر حسب النوع، خدمات، ونموذج تواصل يفتح واتساب/إيميل.'],
+['menu','🍔','منيو مطعم/كافيه','منيو رقمي بأقسام وفلتر وبحث، صور Placeholder، سلة طلبات، وزرار يبعت الطلب على واتساب بتفاصيله والإجمالي.'],
+['store','🛍️','متجر/كتالوج منتجات','كتالوج منتجات بفلتر وبحث وترتيب بالسعر، صفحة تفاصيل في Modal، سلة محفوظة في localStorage، وإتمام الطلب على واتساب.'],
+['booking','📅','حجز مواعيد (عيادة/صالون)','نظام حجز: اختيار الخدمة، التاريخ والوقت المتاح، بيانات العميل، تأكيد، ولوحة للأدمن تعرض الحجوزات (محفوظة في localStorage) مع تصدير CSV.'],
+['dashboard','📊','داشبورد SaaS','داشبورد: Sidebar، كروت KPIs، رسوم بيانية بـ Canvas/SVG من غير مكتبات، جدول بيانات فيه بحث وترتيب وPagination، وبيانات تجريبية.'],
+['crm','📇','CRM صغير للعملاء','إدارة عملاء: إضافة/تعديل/حذف، حالات (جديد/متابعة/تم البيع) بشكل Kanban بالسحب والإفلات، ملاحظات، بحث، واستيراد/تصدير JSON.'],
+['invoice','🧾','مولّد فواتير/عروض أسعار','مولّد فواتير: بيانات الشركة والعميل، بنود بكمية وسعر، خصم وضريبة، حساب تلقائي، رقم فاتورة تلقائي، وطباعة/حفظ PDF من المتصفح.'],
+['quiz','❓','تطبيق امتحانات/كويز','كويز: أسئلة من مصفوفة JSON سهل تعديلها، تايمر، شريط تقدم، نتيجة نهائية مع مراجعة الإجابات، وحفظ أعلى نتيجة.'],
+['tasks','✅','تطبيق مهام / Kanban','مدير مهام: أعمدة (للعمل/جاري/خلص)، سحب وإفلات، أولويات بالألوان، تواريخ تسليم، فلاتر، وحفظ في localStorage.'],
+['course','🎓','صفحة كورس/أكاديمية','صفحة كورس: المحتوى بالموديولات (Accordion)، المدرب، المواعيد، السعر، نموذج تسجيل يبعت على واتساب، وعداد تنازلي لآخر موعد.'],
+['linkbio','🔗','Link in bio','صفحة لينكات واحدة: صورة، اسم، وصف، أزرار للمنصات، وأيقونات SVG، بتصميم موبايل أولًا.'],
+['calc','🧮','حاسبة/أداة ذكية','حاسبة [النوع: قرض/BMI/تسعير/زكاة/أرباح] بمدخلات واضحة، تحقق من القيم، نتيجة فورية، رسم بياني بسيط، وشرح للنتيجة.'],
+['school','🏫','نتائج طلاب / نظام مدرسة','نظام نتائج: إدخال درجات، حساب المجموع والتقدير تلقائيًا، بحث برقم الجلوس، ترتيب الأوائل، وطباعة شهادة.'],
+['pos','💵','نقطة بيع (POS) بسيطة','كاشير: منتجات بأزرار، سلة، خصم، حساب الباقي، طباعة إيصال، وتقرير مبيعات يومي محفوظ.'],
+['inventory','📦','إدارة مخزون','مخزون: أصناف بكميات، إضافة/صرف، تنبيه لما الكمية تقل عن حد معين، سجل حركات، وتصدير Excel (CSV).']];
+const SITE_FEATS=[
+['dark','وضع غامق/فاتح مع حفظ الاختيار'],['rtl','عربي RTL مع زرار تبديل للإنجليزي'],['resp','Responsive كامل للموبايل والتابلت'],['store','حفظ البيانات في localStorage'],['search','بحث وفلاتر'],['anim','أنيميشن ناعم عند السكرول'],['wa','زرار واتساب عائم'],['charts','رسوم بيانية بدون مكتبات'],['print','طباعة / تصدير PDF'],['export','تصدير واستيراد البيانات (CSV/JSON)'],['a11y','Accessibility: تباين، تركيز بالكيبورد، aria'],['seo','SEO: meta tags و Open Graph'],['pwa','PWA: يشتغل كتطبيق على الموبايل']];
+const BUILD_PROMPTS=[
+['ابدأ أي موقع صح','أنت Senior Front-end Developer ومصمم UI. ابنِ [نوع الموقع] لـ [النشاط/الاسم] في ملف HTML واحد (HTML + CSS + JavaScript جوه نفس الملف، من غير مكتبات خارجية إلا Google Fonts).\nالجمهور: [الجمهور]. اللغة: [عربي RTL/إنجليزي].\nالأقسام: [الأقسام].\nالألوان: [الألوان] — الإحساس: [حديث/فخم/مرح].\nالمتطلبات: Responsive، كود منظم بتعليقات، متغيرات CSS للألوان، وبيانات تجريبية واضحة إنها مثال.\nقبل ما تكتب الكود: اعرض الهيكل في نقاط واستنى موافقتي.'],
+['خطة SaaS كاملة','عندي فكرة SaaS: [الفكرة]. قبل أي كود، اكتبلي: المستخدمين وأدوارهم، الـ MVP (أقل مميزات تخليه مفيد)، الشاشات المطلوبة، هيكل البيانات (Entities والعلاقات)، ونموذج التسعير. وبعدين اقترح ترتيب البناء على ٤ مراحل.'],
+['ابنِ شاشة شاشة','نكمّل على نفس الملف. ضيف شاشة [اسم الشاشة] فيها [المكونات]. حافظ على نفس التصميم والمتغيرات. ابعتلي الأجزاء اللي اتغيرت بس مع توضيح مكانها بالظبط.'],
+['صلّح المشكلة','الموقع فيه مشكلة: [وصف المشكلة بالظبط: إيه اللي بيحصل وإيه المفروض يحصل]. رسالة الـ Console: [الخطأ]. اشرح السبب وصلّحها من غير ما تكسر أي حاجة تانية، وابعت الكود المعدّل بس.'],
+['خليه Responsive','راجع الكود ده وخليه يشتغل مثالي على الموبايل (360px) والتابلت والديسكتوب: القوائم، الجداول، الصور، والخطوط. استخدم Mobile-first و clamp() للخطوط.\n[الكود]'],
+['حوّله لعربي RTL','حوّل الموقع ده لعربي RTL صح: dir="rtl"، خط عربي مناسب (Cairo/Tajawal)، عكس الأيقونات الاتجاهية، الأرقام، ومحاذاة النصوص. ومن غير ما تبوّظ التصميم.\n[الكود]'],
+['حسّن التصميم','التصميم ده شكله عادي: [الكود أو وصف]. حسّنه كمصمم محترف: مسافات (Spacing system)، هرمية الخطوط، تباين الألوان، ظلال خفيفة، Hover states، و Micro-interactions. من غير ما تغيّر المحتوى.'],
+['ضيف لوحة أدمن','ضيف للموقع لوحة أدمن محمية بباسورد بسيط (للتجربة بس — وضّح إنه مش أمان حقيقي) أقدر منها أضيف وأعدل وأحذف [العناصر]، والبيانات تتحفظ في localStorage وتظهر في الموقع.'],
+['ربطه بقاعدة بيانات حقيقية','الموقع شغال بـ localStorage. اشرحلي خطوة بخطوة أنقله لـ [Supabase/Firebase] لمبتدئ: إنشاء المشروع، الجداول، المفاتيح (وفين أحطها بأمان)، وتعديل الكود.'],
+['انشر الموقع','اشرحلي أنشر ملف index.html ده مجانًا على [GitHub Pages/Netlify/Vercel] خطوة بخطوة لواحد أول مرة، وإزاي أربطه بدومين خاص.'],
+['اختبار ومراجعة نهائية','راجع الكود ده قبل الإطلاق: الأخطاء، الأمان (XSS في المدخلات)، الأداء، الـ Accessibility، والـ SEO. اعمل Checklist بالمشاكل مرتبة بالأولوية، وبعدين صلّحها.\n[الكود]'],
+['Landing بـ Tailwind','ابنِ Landing page لـ [المنتج] بـ HTML و Tailwind CSS (CDN) في ملف واحد: Hero، Social proof، Features grid، Pricing بـ ٣ باقات، FAQ accordion، Footer. عربي RTL وزرار Dark mode.']];
+
+/* ---------- AI TOOLS ---------- */
+const TOOL_CATS=[['chat','💬','مساعدين شات'],['research','🔎','بحث ومذاكرة'],['image','🖼️','صور وتصميم'],['video','🎥','فيديو'],['audio','🎙️','صوت وموسيقى'],['code','👨‍💻','برمجة وبناء مواقع'],['slides','📑','عروض ومستندات'],['work','🗂️','إنتاجية واجتماعات'],['auto','⚙️','أتمتة وإيجنتس'],['data','📈','بيانات وتحليل']];
+const TOOLS=[
+['ChatGPT','chat','https://chatgpt.com','مساعد شامل من OpenAI: كتابة، تحليل ملفات، صور، بحث على الويب، وصوت.',['كتابة','تحليل ملفات','صور','بحث']],
+['Claude','chat','https://claude.ai','مساعد من Anthropic قوي في الكتابة الطويلة والتحليل والكود وقراءة الملفات الكبيرة، وبيعمل مستندات ومواقع.',['كتابة','كود','ملفات طويلة','مواقع']],
+['Gemini','chat','https://gemini.google.com','مساعد جوجل، مربوط بخدمات Google (Gmail و Drive و YouTube)، وبيدعم الصور والفيديو.',['بحث','Google','صور']],
+['Microsoft Copilot','chat','https://copilot.microsoft.com','مساعد مايكروسوفت، ونسخته في Office بتشتغل جوه Word و Excel و PowerPoint.',['Office','كتابة','بحث']],
+['DeepSeek','chat','https://chat.deepseek.com','موديل صيني قوي في التفكير المنطقي والرياضيات والكود.',['منطق','كود','رياضيات']],
+['Grok','chat','https://grok.com','مساعد من xAI مربوط بمنصة X ومتابع للأخبار اللحظية.',['أخبار','X']],
+['Meta AI','chat','https://www.meta.ai','مساعد موجود جوه واتساب وماسنجر وإنستجرام.',['واتساب','سوشيال']],
+['Le Chat (Mistral)','chat','https://chat.mistral.ai','مساعد أوروبي سريع من Mistral.',['سريع','كتابة']],
+['Qwen Chat','chat','https://chat.qwen.ai','موديلات علي بابا، كويسة في العربي والكود والصور.',['كود','متعدد اللغات']],
+['Perplexity','research','https://www.perplexity.ai','محرك بحث بالـ AI بيرد بمصادر ولينكات تقدر تراجعها.',['بحث','مصادر','أخبار']],
+['NotebookLM','research','https://notebooklm.google.com','ارفع ملفاتك ويرد منها هي بس، ويعمل ملخصات وبودكاست صوتي وخرائط ذهنية من مصادرك.',['مذاكرة','ملخصات','بودكاست']],
+['Consensus','research','https://consensus.app','بحث في الأبحاث العلمية المحكّمة مع ملخص لاتجاه النتائج.',['أبحاث علمية']],
+['Elicit','research','https://elicit.com','مساعد مراجعة أدبيات: يطلّع أبحاث ويستخرج منها البيانات في جداول.',['أبحاث','رسالة ماجستير']],
+['SciSpace','research','https://scispace.com','اقرأ واشرح الأبحاث العلمية واسأل عليها.',['أبحاث','شرح']],
+['Khanmigo','research','https://www.khanmigo.ai','مدرس خصوصي بالـ AI من Khan Academy بيوجّهك بدل ما يديك الإجابة.',['مذاكرة','تعليم']],
+['Midjourney','image','https://www.midjourney.com','من أقوى أدوات الصور الفنية والسينمائية.',['صور فنية','إعلانات']],
+['Ideogram','image','https://ideogram.ai','ممتاز في الصور اللي فيها كتابة (بوسترات، لوجوهات).',['بوسترات','نص في الصورة']],
+['Adobe Firefly','image','https://firefly.adobe.com','توليد وتعديل صور من Adobe ومدمج في فوتوشوب.',['تعديل صور','فوتوشوب']],
+['Leonardo AI','image','https://leonardo.ai','صور وتصميمات للألعاب والمنتجات مع أدوات تحكم كتير.',['منتجات','ستايلات']],
+['Canva AI','image','https://www.canva.com','تصميم سوشيال وبوسترات وعروض بأدوات AI جوه Canva.',['سوشيال','قوالب','مبتدئين']],
+['Krea','image','https://www.krea.ai','توليد صور وفيديو لحظي وتكبير جودة الصور (Upscale).',['Upscale','لحظي']],
+['Recraft','image','https://www.recraft.ai','أيقونات ورسومات Vector وهوية بصرية متناسقة.',['Vector','أيقونات','لوجو']],
+['Remove.bg','image','https://www.remove.bg','شيل خلفية أي صورة في ثانية.',['شيل الخلفية']],
+['Runway','video','https://runwayml.com','توليد وتعديل فيديو بالـ AI وأدوات مونتاج احترافية.',['توليد فيديو','مونتاج']],
+['Kling AI','video','https://klingai.com','توليد فيديو واقعي من نص أو صورة.',['نص لفيديو','صورة لفيديو']],
+['Google Flow / Veo','video','https://labs.google/flow','أداة جوجل لصناعة مشاهد سينمائية بموديل Veo.',['سينمائي','مشاهد']],
+['Sora','video','https://sora.chatgpt.com','موديل OpenAI لتوليد الفيديو.',['نص لفيديو']],
+['Luma Dream Machine','video','https://lumalabs.ai/dream-machine','فيديو من نص وصورة بحركة كاميرا سلسة.',['حركة كاميرا']],
+['Hailuo (MiniMax)','video','https://hailuoai.video','توليد فيديو بجودة عالية من نص وصورة.',['نص لفيديو']],
+['HeyGen','video','https://www.heygen.com','أفاتار بيتكلم وترجمة فيديو بنفس صوتك وحركة الشفايف.',['أفاتار','ترجمة فيديو']],
+['Synthesia','video','https://www.synthesia.io','فيديوهات تدريبية بمقدّم افتراضي.',['تدريب','أفاتار']],
+['CapCut','video','https://www.capcut.com','مونتاج ريلز مع ترجمة تلقائية وأدوات AI.',['ريلز','ترجمة تلقائية']],
+['Descript','video','https://www.descript.com','عدّل الفيديو والبودكاست كأنك بتعدّل نص.',['بودكاست','مونتاج']],
+['ElevenLabs','audio','https://elevenlabs.io','أصوات واقعية جدًا، تعليق صوتي، ودبلجة لغات كتير منها العربي.',['تعليق صوتي','دبلجة']],
+['Suno','audio','https://suno.com','اعمل أغنية كاملة بالكلام والموسيقى من وصف.',['أغاني','جنجل']],
+['Udio','audio','https://www.udio.com','توليد موسيقى وأغاني بجودة عالية.',['موسيقى']],
+['Adobe Podcast','audio','https://podcast.adobe.com','نضّف صوت التسجيل وشيل الدوشة وكأنه في استوديو.',['تنضيف صوت']],
+['Murf AI','audio','https://murf.ai','تعليق صوتي احترافي للعروض والفيديوهات.',['تعليق صوتي']],
+['GitHub Copilot','code','https://github.com/features/copilot','مساعد كود جوه المحرر بيكمّل ويشرح ويصلّح.',['كود','VS Code']],
+['Cursor','code','https://cursor.com','محرر كود بالـ AI بيفهم المشروع كله ويعدّل في ملفات كتير.',['محرر','مشاريع']],
+['Claude Code','code','https://claude.com/claude-code','وكيل برمجة بيشتغل على مشروعك ينفّذ ويعدّل ويختبر.',['وكيل برمجة','مشاريع']],
+['Windsurf','code','https://windsurf.com','محرر كود بوكيل AI.',['محرر']],
+['Replit','code','https://replit.com','ابنِ وانشر تطبيقات من المتصفح بوصف بالكلام.',['تطبيقات','نشر']],
+['Bolt.new','code','https://bolt.new','اكتب فكرتك يبنيلك تطبيق ويب كامل في المتصفح.',['مواقع','SaaS']],
+['Lovable','code','https://lovable.dev','ابنِ تطبيقات ومواقع بالكلام مع قاعدة بيانات.',['SaaS','مواقع']],
+['v0','code','https://v0.app','من Vercel: يحوّل الوصف لواجهات React جاهزة.',['واجهات','React']],
+['Gamma','slides','https://gamma.app','اعمل عرض تقديمي أو مستند أو موقع بسيط من نص في دقايق.',['عروض','مستندات']],
+['Napkin AI','slides','https://www.napkin.ai','حوّل النص لرسومات توضيحية وإنفوجرافيك.',['إنفوجرافيك']],
+['Beautiful.ai','slides','https://www.beautiful.ai','عروض بتصميم بيظبط نفسه تلقائيًا.',['عروض']],
+['Notion AI','work','https://www.notion.com','ملاحظات ومستندات وقواعد بيانات مع مساعد AI.',['ملاحظات','تنظيم']],
+['Otter.ai','work','https://otter.ai','تفريغ وتلخيص الاجتماعات أوتوماتيك.',['اجتماعات','تفريغ']],
+['Fireflies','work','https://fireflies.ai','يحضر اجتماعاتك ويكتب المحضر والمهام.',['اجتماعات','محضر']],
+['Grammarly','work','https://www.grammarly.com','تدقيق وتحسين الكتابة بالإنجليزي.',['إنجليزي','تدقيق']],
+['QuillBot','work','https://quillbot.com','إعادة صياغة وتلخيص وتدقيق.',['إعادة صياغة']],
+['DeepL','work','https://www.deepl.com','ترجمة طبيعية جدًا لنصوص وملفات.',['ترجمة']],
+['n8n','auto','https://n8n.io','أتمتة مفتوحة المصدر مع AI Agents وتقدر تستضيفها بنفسك.',['أتمتة','Agents','شات بوت']],
+['Zapier','auto','https://zapier.com','اربط آلاف التطبيقات ببعض من غير كود.',['أتمتة','سهل']],
+['Make','auto','https://www.make.com','أتمتة مرئية بسيناريوهات معقدة.',['أتمتة','مرئي']],
+['ManyChat','auto','https://manychat.com','شات بوت لإنستجرام وماسنجر وواتساب.',['شات بوت','سوشيال']],
+['Manus','auto','https://manus.im','وكيل AI بينفذ مهام طويلة لوحده (بحث، تقارير، مواقع).',['وكيل','مهام طويلة']],
+['Julius AI','data','https://julius.ai','ارفع ملف إكسيل واسأله يحلل ويرسم.',['إكسيل','رسوم بيانية']],
+['Power BI Copilot','data','https://www.microsoft.com/power-platform/products/power-bi','داشبوردات وتقارير مع مساعد AI.',['داشبورد','تقارير']],
+['Looker Studio','data','https://lookerstudio.google.com','داشبوردات مجانية من جوجل مربوطة بـ Sheets.',['داشبورد','Google Sheets']]];
+
+/* ---------- LEARN ---------- */
+const LESSONS=[
+{id:'m1',ic:'🤖',t:'الجلسة ١: يعني إيه AI أصلًا؟',s:'من غير كلام معقد',sec:[
+['الـ AI في جيبك دلوقتي','من غير ما تاخد بالك استخدمته النهارده: فتحت الموبايل بوشّك، يوتيوب اقترحلك فيديو، الخريطة قالتلك الطريق زحمة، الإيميل رمى الرسايل المزعجة، الكيبورد كمّلك الكلمة، وفيسبوك اختارلك البوستات.'],
+['التعريف في جملة','<b>الـ AI = برنامج اتعلّم من أمثلة كتير</b>، فبقى يعرف يتصرف لوحده في حاجات جديدة عمره ما شافها. زي الطفل اللي شاف قطط كتير (بيضا وسودا، كبيرة وصغيرة) فعقله لقط الشكل وبقى يعرف أي قطة حتى لو أول مرة يشوفها.'],
+['برنامج عادي ولا AI؟','الفرق: <b>مين اللي كتب الخطوات؟</b><br>• البرنامج العادي زي وصفة الأكل: بينفذ خطوات مكتوبة بالحرف (منبّه الموبايل، الإكسيل وهو بيجمع).<br>• الـ AI زي الشيف الشاطر: اتعلم من التجربة وبيتصرف في الجديد (فلتر السبام، ترجمة جوجل).<br>الآلة الحاسبة مش AI: سريعة ومابتغلطش بس بتنفذ قاعدة ثابتة ومابتتعلمش.'],
+['عيلة الـ AI: AI ⊃ ML ⊃ DL','زي العلب اللي جوه بعض:<br>• <b>AI</b> الاسم الكبير: أي جهاز بيتصرف بذكاء.<br>• <b>ML تعلّم الآلة</b>: بيتعلم من أمثلة بدل ما نكتبله كل حاجة (بيانات ← يتعلم ← يتوقع) — نتفليكس بيعرف ذوقك، البنك يكشف عملية مشبوهة.<br>• <b>DL التعلّم العميق</b>: الـ ML بس بعضلات؛ بيشوف ويسمع ويتكلم ويترجم. بقى قوي بسبب: بيانات أكتر + أجهزة أقوى + طرق أذكى.'],
+['تاريخ في سطر','الخمسينات: هل الآلة تفكر؟ ← التمانينات: برامج بخبرة البشر ← الألفينات: بدأ يتعلم من البيانات ← 2010: بقى يشوف ويسمع ← من 2022: ChatGPT وبقى في إيد الكل.'],
+['بيفيدنا في إيه؟','يلخّص، يكتب أول مسودة، يعيد الصياغة، يترجم، يطلّع أفكار، يرتّب ويصنّف. <b>هو يعمل المسودة.. وانت تعمل اللمسة الأخيرة.</b> والخطوة الأخيرة "انت تراجع وتعتمد" عمرها ما تتشال.'],
+['بيغلط في إيه؟','<b>الهلوسة</b>: يألّف إجابة مقنعة جدًا بس غلط — زي الطالب اللي مذاكرش وبيكتب بثقة. كمان: مش فاهم الموقف كله، ممكن يكون منحاز، معلوماته ممكن تكون قديمة، بياخد كلامك بالحرف، وواثق حتى وهو غلطان. <b>كلامه حلو ≠ كلامه صح.</b>'],
+['هياخد شغلنا؟','الـ AI مش هياخد شغلك.. <b>اللي بيعرف يستخدم الـ AI هو اللي ممكن ياخده.</b> مش بيعرف كل حاجة (بيخمّن)، مش هيلغي كل الوظائف (بيشيل الجزء الممل)، ومش بيفهم زي البني آدم (بيقلّد طريقة كلامنا).'],
+['إشارة المرور + ٥ قواعد ذهبية','🟢 اعمل عادي: ملخص اجتماع · 🟡 اعمل وراجع: إيميل لعميل، ترجمة إعلان · 🔴 متسيبوش لوحده: تشخيص مرض، موافقة على قرض.<br>القواعد: اطلب بوضوح · اديله تفاصيل · راجع المهم · احمي أسرارك · القرار قرارك. <b>الـ AI مساعد طيار.. مش الطيار.</b>']],
+q:[['الآلة الحاسبة في الموبايل…',['ذكاء اصطناعي','برنامج عادي بقواعد ثابتة','تعلّم عميق'],1],['فتح الموبايل بالوش مثال على…',['ML بس','DL','مش AI'],1],['"الهلوسة" معناها…',['الـ AI بيرفض يرد','بيألّف معلومة مقنعة وغلط','بطء في الرد'],1],['تحليل مرتبات على أداة مجانية يبقى…',['أخضر','أصفر','أحمر'],2]]},
+{id:'m2',ic:'✨',t:'الجلسة ٢: الذكاء الاصطناعي التوليدي',s:'الصبي الشاطر في الورشة.. والأسطى يراجع',sec:[
+['يعني إيه «توليدي»؟','الـ AI العادي = <b>الكاشير</b>: بيحسب ويفرز ويتوقع من حاجات موجودة.<br>الـ AI التوليدي = <b>الشيف</b>: بيعمل حاجة جديدة من الأول (إيميل، صورة). «توليدي» يعني بيولّد محتوى جديد لما تطلب منه.'],
+['بيطلّع إيه؟','نص (رد على عميل) · صور (بوستر) · صوت (تعليق صوتي) · فيديو (ريلز) · كود (سكربت). كل نوع محتاج طلب واضح ومراجعة قبل النشر — وساعات المهمة الواحدة فيها أكتر من نوع.'],
+['بيشتغل إزاي؟','١) اتعلّم من أمثلة كتير جدًا ← ٢) انت تديله طلبك وتفاصيلك ← ٣) يطلّع أقرب إجابة متوقعة. زي اللي اتربّى في مطبخ أمه: تقوله «اعمل محشي» يعمله من كتر ما شاف، مش لأنه حافظ وصفة.'],
+['السياق = التفاصيل','للتاكسي: «وديني مدينة نصر» هيلف بيك ويسألك ١٠ أسئلة.. «عباس العقاد قدام سيتي ستارز» هيوصّلك على طول. قوله دايمًا: <b>عايز إيه · مين هيقرا · المعلومات · الطول والأسلوب · مثال.</b>'],
+['التوكنز ونافذة السياق','<b>التوكن</b> = حتة صغيرة من الكلام (زي الطوب). الـ AI بيقرا ويكتب حتة حتة.<br><b>نافذة السياق</b> = كمية الكلام اللي يقدر يفتكرها مرة واحدة، زي سبورة الفصل: لما تتملي بيمسح القديم. عشان كده في الشات الطويل أوي ممكن ينسى أول تفاصيل.'],
+['هو مش بيقرا أفكارك','ناقص: «اكتب إيميل.»<br>واضح: «اكتب إيميل مؤدب لمورّد، نفكّره بفاتورة متأخرة ١٥ يوم، بأسلوب ودّي وقصير.» — لمين؟ ليه؟ بأي أسلوب؟ قد إيه؟ تغيير بسيط = نتيجة أحسن بكتير.'],
+['الهلوسة بتبان في إيه؟','أرقام وإحصائيات · أسماء ناس · روابط ومصادر · قوانين ومواد. <b>أي حاجة شكلها دقيقة جدًا اتأكد منها.</b> الخطر عالي في الفلوس والقانون والتواريخ، متوسط في السياسات والخطوات التقنية، وقليل في الأفكار والمسودات لنفسك.'],
+['التحيّز والخصوصية والحقوق','• <b>التحيّز</b>: بيكرر اللي اتعوّد يشوفه (المدير دايمًا راجل ببدلة). اسأل: فيه صورة نمطية؟<br>• <b>الخصوصية</b>: لا بيانات عملاء ولا باسوردات ولا أسرار شغل — ولو لازم شيل الأسامي والأرقام.<br>• <b>الحقوق</b>: متستخدمش لوجو أو صوت أو وش حد حقيقي من غير إذن.'],
+['الإنسان في الحلقة','إنت تحدد الهدف ← الـ AI يجهّز مسودة ← إنت تراجع وتقرر وتمضي. زي الـ GPS: بيقترح الطريق، بس لو قالك «ادخل في الترعة» مش هتدخل! الآلة الحاسبة مقعدتش المحاسب في البيت.. خلّته أسرع.']],
+q:[['الـ AI التوليدي أقرب لـ…',['الكاشير','الشيف','الآلة الحاسبة'],1],['"نافذة السياق" معناها…',['حجم الشاشة','كمية الكلام اللي يفتكرها مرة واحدة','عدد المستخدمين'],1],['أنهي حاجة لازم تتأكد منها أكتر؟',['فكرة بوست','رقم إحصائي من غير مصدر','عنوان مقترح'],1],['إيميل اعتذار لعميل زعلان…',['أخضر','أصفر','أحمر'],1]]},
+{id:'m4',ic:'🧩',t:'الجلسة ٤: هندسة البرومبت',s:'البرومبت مش جملة سحرية — هو توصيل واضح، واختبار، وتحسين',sec:[
+['ليه الردود بتطلع عامة؟','«اكتبلي عن التسويق» ← رد عام وسطحي، لأن مفيش جمهور ولا هدف ولا شكل. ٤ أسباب بتتكرر: <b>غموض · سياق ناقص · معيار نجاح مفقود · مفيش مراجعة</b> — وكلها في إيدك.'],
+['إطار CLEAR','<b>C</b>ontext سياق · <b>L</b>imitations قيود · <b>E</b>nd goal هدف · <b>A</b>udience جمهور · <b>R</b>esponse format شكل الرد. خمس حروف تفتكرها قبل أي برومبت.'],
+['تشريح برومبت قوي','<code>Act as a marketing strategist.</code> (الدور)<br>كافيه قهوة مصري لطلبة جامعة ١٨–٢٤ (السياق والجمهور)<br>٥ بوستات: hook + caption + CTA (الهدف)<br>عامية مصرية · بدون مبالغة (القيود)<br>اعرض النتيجة في جدول (الشكل)<br>كل سطر بيقفل غموض.'],
+['٤ تقنيات بتفرق','• <b>Role</b>: الدور يضيف زاوية.<br>• <b>Examples</b>: مثال يثبّت الأسلوب.<br>• <b>Plan-first</b>: خطة قبل التنفيذ.<br>• <b>Critique</b>: ناقد بعد التنفيذ.'],
+['المهمة الكبيرة على مراحل','وضّح الهدف ← اعمل خطة ← ابني جزء جزء ← راجع بمعايير ← تحقّق وأقفل. حسّن الرد اللي قدامك بدل ما تبدأ من الصفر.'],
+['أخطاء شائعة واستخدام آمن','✕ «حسّنه» من غير معايير · مهمة ضخمة في برومبت واحد · ثقة في «تصرّف كخبير» أو مصادر ماتراجعتش.<br>✓ راجع الأرقام والمعلومات المهمة · ماتلصقش باسوردات أو بيانات عملاء · الرد مسودة لحد ما يتراجع.'],
+['قيّم برومبتك من ١٠','وضوح المهمة (٠–٢) · السياق (٠–٢) · الجمهور وشكل الرد (٠–٢) · قيود ومعايير نجاح (٠–٢) · تحقّق وأمان (٠–٢). جرّب "مقيّم البرومبت" في الموقع ده.'],
+['المعادلة في سطر','هدف واضح + سياق مناسب + قيود + شكل الرد + تحقّق = مساعدة أنفع من الـ AI. <b>الأقوى مش الأطول — الأقوى اللي نتيجته تتراجع وتتستخدم.</b>']],
+q:[['حرف E في CLEAR معناه…',['Example','End goal','Edit'],1],['تقنية "Plan-first" يعني…',['يكتب على طول','يعرض خطة قبل التنفيذ','يختصر الرد'],1],['أقوى برومبت هو…',['الأطول','اللي فيه كلمات سحرية','اللي نتيجته تتراجع وتتستخدم'],2],['«حسّنه» من غير معايير…',['ممارسة كويسة','غلطة شائعة','مطلوبة دايمًا'],1]]},
+{id:'m3',ic:'🧭',t:'إزاي تختار الأداة الصح؟',s:'متتوهش بين الأدوات — المهمة هي اللي بتختار',sec:[
+['القاعدة الذهبية','مش محتاج تعرف ١٠٠ أداة. اتقن <b>مساعد شات واحد</b> كويس (ChatGPT أو Claude أو Gemini) وده هيغطي ٨٠٪ من شغلك. ضيف أداة متخصصة بس لما المهمة تحتاج.'],
+['اختار حسب المهمة','• كتابة وتلخيص وتحليل ← مساعد شات.<br>• بحث بمصادر ← Perplexity.<br>• مذاكرة من ملفاتك ← NotebookLM.<br>• صور ← Midjourney / Ideogram / Canva.<br>• فيديو ← Runway / Kling / CapCut.<br>• صوت ← ElevenLabs.<br>• مواقع وتطبيقات ← Claude / Bolt / Lovable.<br>• أتمتة ← n8n / Zapier.'],
+['٤ أسئلة قبل ما تجرّب أداة','١) بتحل مشكلة عندي فعلًا؟ ٢) بياناتي بتروح فين؟ ٣) فيه نسخة تجريبية؟ ٤) أقدر أصدّر شغلي منها؟'],
+['البرومبت أهم من الأداة','نفس البرومبت الكويس بيشتغل في أي أداة. عشان كده المكتبة والمُنشئ في الموقع ده معمولين يشتغلوا مع كل الأدوات.']],
+q:[['عاوز ترد من ملفاتك بس…',['NotebookLM','Suno','CapCut'],0],['عاوز بحث بمصادر ولينكات…',['Midjourney','Perplexity','Remove.bg'],1]]}];
+
+const GLOSS=[['AI','ذكاء اصطناعي: برنامج اتعلّم من أمثلة فبقى يتصرف في الجديد.'],['ML','تعلّم الآلة: يتعلم من البيانات بدل ما نكتبله القواعد.'],['DL','تعلّم عميق: ML أقوى بيفهم الصور والصوت واللغة.'],['Generative AI','ذكاء توليدي: بيعمل محتوى جديد (نص، صورة، صوت، فيديو، كود).'],['LLM','نموذج لغوي كبير: الموديل اللي ورا الشات بوتات.'],['Prompt','البرومبت: الطلب أو التعليمات اللي بتكتبها للـ AI.'],['Token','حتة صغيرة من الكلام؛ الموديل بيقرا ويكتب توكن توكن.'],['Context window','نافذة السياق: أقصى كلام يفتكره في نفس اللحظة.'],['Hallucination','هلوسة: معلومة متألّفة شكلها مقنع.'],['Bias','تحيّز: ميل لناحية بسبب البيانات اللي اتعلم منها.'],['Human in the loop','الإنسان في الحلقة: بني آدم يراجع ويقرر.'],['Few-shot','تديله أمثلة في البرومبت عشان يقلد الأسلوب.'],['System prompt','تعليمات ثابتة بتحدد شخصية وحدود المساعد.'],['AI Agent','وكيل: AI بينفذ خطوات ويستخدم أدوات لوحده.'],['Automation','أتمتة: تخلّي المهام المتكررة تتعمل لوحدها.'],['RAG','إن الموديل يدوّر في مستنداتك قبل ما يرد.'],['Fine-tuning','تدريب إضافي لموديل على بيانات معينة.'],['Multimodal','متعدد الوسائط: بيفهم نص وصورة وصوت مع بعض.']];
+
+</script>
+<script>
+/* ================= APP ================= */
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const store={get(k,d){try{const v=localStorage.getItem(k);return v===null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const AR=n=>String(n).replace(/\d/g,d=>'٠١٢٣٤٥٦٧٨٩'[d]);
+let tt;function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('on'),1600)}
+function copy(txt){const done=()=>toast('اتنسخ ✓');try{navigator.clipboard.writeText(txt).then(done,()=>fb())}catch(e){fb()}
+ function fb(){const a=document.createElement('textarea');a.value=txt;document.body.appendChild(a);a.select();try{document.execCommand('copy')}catch(e){}a.remove();done()}}
+const gpt=t=>'https://chatgpt.com/?q='+encodeURIComponent(t),cla=t=>'https://claude.ai/new?q='+encodeURIComponent(t);
+const hl=s=>esc(s).replace(/\[([^\]]+)\]/g,'<mark>[$1]</mark>');
+
+/* ---------- theme ---------- */
+let theme=store.get('atlas-theme',matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');
+const IC={sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',moon:'<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>'};
+function applyTheme(){document.documentElement.dataset.theme=theme;$('#thIc').innerHTML=theme==='dark'?IC.sun:IC.moon}
+$('#thBtn').onclick=()=>{theme=theme==='dark'?'light':'dark';store.set('atlas-theme',theme);applyTheme();toast(theme==='dark'?'الوضع الغامق 🌙':'الوضع الفاتح ☀️')};
+
+/* ---------- favorites ---------- */
+let favs=store.get('atlas-favs',[]);
+const favKey=(t,x)=>t+'|'+x.slice(0,60);
+const isFav=(t,x)=>favs.some(f=>favKey(f.t,f.x)===favKey(t,x));
+function toggleFav(t,x,c){const k=favKey(t,x);if(favs.some(f=>favKey(f.t,f.x)===k)){favs=favs.filter(f=>favKey(f.t,f.x)!==k);toast('اتشال من المحفوظات')}else{favs.unshift({t,x,c:c||'',d:Date.now()});toast('اتحفظ ⭐')}store.set('atlas-favs',favs);updFav()}
+function updFav(){$('#favCnt').textContent=favs.length;if(cur==='favs')renderFavs()}
+
+/* ---------- prompt card ---------- */
+const REG=[];
+function pcard(t,x,cat){const i=REG.push({t,x,cat})-1;return `<div class="card pc hov"><div class="top">${cat?`<span class="tag">${esc(cat)}</span>`:''}<button class="fav ${isFav(t,x)?'on':''}" data-fav="${i}" title="احفظ">⭐</button></div><h3>${esc(t)}</h3><pre>${hl(x)}</pre><div class="acts"><button class="btn pr sm" data-fill="${i}">✏️ املأ واستخدم</button><button class="btn sm" data-cp="${i}">📋 انسخ</button></div></div>`}
+document.addEventListener('click',e=>{
+ const f=e.target.closest('[data-fav]');if(f){const r=REG[+f.dataset.fav];toggleFav(r.t,r.x,r.cat);f.classList.toggle('on',isFav(r.t,r.x));return}
+ const c=e.target.closest('[data-cp]');if(c){copy(REG[+c.dataset.cp].x);return}
+ const fl=e.target.closest('[data-fill]');if(fl){openFill(REG[+fl.dataset.fill]);return}
+ const g=e.target.closest('[data-go]');if(g){location.hash=g.dataset.go}
+});
+
+/* ---------- fill modal ---------- */
+let fillCur=null;
+function openFill(r){fillCur=r;const ph=[...new Set([...r.x.matchAll(/\[([^\]]+)\]/g)].map(m=>m[1]))];
+ $('#fmT').textContent='✏️ '+r.t;
+ $('#fmF').innerHTML=ph.length?ph.map((p,i)=>{const long=/الصق|النص|الكود|المحتوى|النقاط|الملاحظات|العقد|الدرس|المهام|القائمة|الفقرة|البرومبت|نماذج/.test(p);return `<label class="lb" ${i?'':'style="margin-top:0"'}>${esc(p)}</label>${long?`<textarea class="inp" data-ph="${esc(p)}"></textarea>`:`<input class="inp" data-ph="${esc(p)}">`}`}).join(''):'<p style="color:var(--mu)">البرومبت ده جاهز من غير خانات — انسخه على طول.</p>';
+ $('#fmF').oninput=updFill;updFill();openM('fm');const first=$('#fmF [data-ph]');first&&setTimeout(()=>first.focus(),50)}
+function filled(){let x=fillCur.x;$$('#fmF [data-ph]').forEach(el=>{const v=el.value.trim();if(v)x=x.split('['+el.dataset.ph+']').join(v)});return x}
+function updFill(){const x=filled();$('#fmP').innerHTML=hl(x);$('#fmG').href=gpt(x);$('#fmCl').href=cla(x)}
+$('#fmC').onclick=()=>copy(filled());$('#fmS').onclick=()=>toggleFav(fillCur.t,filled(),fillCur.cat);
+function openM(id){$('#'+id).classList.add('on');document.body.style.overflow='hidden'}
+function closeM(id){$('#'+id).classList.remove('on');document.body.style.overflow=''}
+$$('.md').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)closeM(m.id)}));
+
+/* ---------- HOME ---------- */
+const NP=PROMPTS.reduce((a,c)=>a+c.p.length,0)+BUILD_PROMPTS.length;
+function renderHome(){
+ $('#stats').innerHTML=[[NP,'برومبت جاهز'],[PROMPTS.length,'تصنيف ومجال'],[TOOLS.length,'أداة AI'],[LESSONS.length,'وحدات مذاكرة']].map(s=>`<div class="stat"><b class="gt">${AR(s[0])}+</b><span>${s[1]}</span></div>`).join('');
+ const all=PROMPTS.flatMap(c=>c.p.map(p=>[p,c.n]));const d=new Date(),[p,c]=all[(d.getFullYear()*400+d.getMonth()*31+d.getDate())%all.length];
+ $('#potd').innerHTML=`<span class="kick">🎁 برومبت النهارده · ${esc(c)}</span><h3 style="font-size:20px;font-weight:900">${esc(p[0])}</h3><pre>${hl(p[1])}</pre><div class="acts"><button class="btn pr sm" data-fill="${REG.push({t:p[0],x:p[1],cat:c})-1}">✏️ املأ واستخدم</button><button class="btn sm" data-go="prompts">شوف المكتبة كلها ←</button></div>`;
+ $('#homeCards').innerHTML=[['📖','عاوز تذاكر','ملخصات الجلسات بالمصري + اختبارات قصيرة + قاموس مصطلحات.','learn'],['📚','عاوز برومبت جاهز',`${AR(NP)}+ برومبت لـ ${AR(PROMPTS.length)} مجال، تملاه بياناتك وتنسخه.`,'prompts'],['🪄','عاوز تعمل برومبتك','جاوب على أسئلة بسيطة ويطلعلك برومبت محترف بإطار CLEAR.','wizard'],['🧱','عاوز تبني موقع','مولّد برومبت لبناء أي موقع أو SaaS في ملف HTML واحد.','sites'],['🧰','بتدوّر على أداة',`${AR(TOOLS.length)} أداة مترتبة حسب الاستخدام بلينكاتها.`,'tools'],['⭐','محفوظاتك','كل برومبت حفظته في مكان واحد وتصدّره.','favs']].map(c=>`<div class="card hov go" data-go="${c[3]}"><div class="em">${c[0]}</div><h3>${c[1]}</h3><p>${c[2]}</p></div>`).join('');
+ $('#clearCards').innerHTML=[['C','Context — السياق','إيه الموقف؟ مين انت؟ إيه المعلومات اللي عندك؟'],['L','Limitations — القيود','اللغة، الطول، الأسلوب، الممنوعات.'],['E','End goal — الهدف','عاوز توصل لإيه بالظبط؟ النجاح شكله إيه؟'],['A','Audience — الجمهور','مين هيقرا أو يستخدم النتيجة؟'],['R','Response format — الشكل','جدول؟ نقاط؟ خطوات؟ كود؟']].map(c=>`<div class="card"><div class="em gt" style="font-size:40px;font-weight:900">${c[0]}</div><h3>${c[1]}</h3><p>${c[2]}</p></div>`).join('');
+}
+
+/* ---------- LEARN ---------- */
+let prog=store.get('atlas-prog',{}),curMod=null;
+function renderLearn(){const b=$('#learnBody');
+ if(!curMod){b.innerHTML=`<div class="grid g4">${LESSONS.map(m=>{const d=(prog[m.id]||[]).length,p=Math.round(d/m.sec.length*100);return `<div class="card hov mod" data-mod="${m.id}"><div class="em">${m.ic}</div><h3>${esc(m.t)}</h3><p>${esc(m.s)}</p><p style="margin-top:8px;font-size:13px">${AR(m.sec.length)} دروس · ${AR(m.q.length)} أسئلة · خلصت ${AR(p)}٪</p><div class="pbar"><i style="width:${p}%"></i></div></div>`}).join('')}</div>
+  <h2 class="st">📘 قاموس المصطلحات</h2><div class="gl">${GLOSS.map(g=>`<div><b>${g[0]}</b><span>${g[1]}</span></div>`).join('')}</div>`;
+  b.querySelectorAll('[data-mod]').forEach(c=>c.onclick=()=>{curMod=c.dataset.mod;renderLearn();scrollTo(0,0)});return}
+ const m=LESSONS.find(x=>x.id===curMod),done=prog[m.id]||[];
+ b.innerHTML=`<button class="btn sm" id="lBack" style="margin-bottom:16px">→ كل الوحدات</button><h2 style="font-size:26px;font-weight:900">${m.ic} ${esc(m.t)}</h2><p style="color:var(--mu);margin-bottom:18px">${esc(m.s)}</p>
+ <div class="lsn">${m.sec.map((s,i)=>`<details class="ls ${done.includes(i)?'done':''}" ${i===0?'open':''}><summary><span class="n">${done.includes(i)?'✓':AR(i+1)}</span>${esc(s[0])}</summary><div class="bd">${s[1]}<div style="margin-top:12px"><button class="btn sm" data-done="${i}">${done.includes(i)?'↺ علّمه مش مقروء':'✓ فهمت الدرس ده'}</button></div></div></details>`).join('')}</div>
+ <div class="quiz"><h2 class="st">🧪 اختبر نفسك</h2>${m.q.map((q,i)=>`<div class="qq"><h4>${AR(i+1)}. ${esc(q[0])}</h4><div class="opts">${q[1].map((o,j)=>`<button data-q="${i}" data-o="${j}">${esc(o)}</button>`).join('')}</div></div>`).join('')}<p id="qRes" class="score"></p></div>
+ <h2 class="st">📚 برومبتات تساعدك تذاكر الوحدة دي</h2><div class="grid g3">${[['اشرحلي أكتر',`اشرحلي "${m.t.replace(/^.*?: /,'')}" كأني مبتدئ، بتشبيهات من الحياة في مصر، وفي الآخر ٥ أسئلة أختبر بيها نفسي.`],['امتحنّي فيها',`اعمل معايا امتحان من ١٠ أسئلة على موضوع "${m.t.replace(/^.*?: /,'')}". سؤال واحد كل مرة، واستنى إجابتي، وصحّحلي بعد كل سؤال.`]].map(p=>pcard(p[0],p[1],'مذاكرة')).join('')}</div>`;
+ $('#lBack').onclick=()=>{curMod=null;renderLearn()};
+ b.querySelectorAll('[data-done]').forEach(x=>x.onclick=e=>{e.preventDefault();const i=+x.dataset.done,a=new Set(prog[m.id]||[]);a.has(i)?a.delete(i):a.add(i);prog[m.id]=[...a];store.set('atlas-prog',prog);const op=[...b.querySelectorAll('details')].map(d=>d.open);renderLearn();b.querySelectorAll('details').forEach((d,k)=>d.open=op[k]);if(!a.has(i))return;toast('برافو 👏')});
+ let score=0,ans=0;b.querySelectorAll('[data-q]').forEach(x=>x.onclick=()=>{const q=m.q[+x.dataset.q],box=x.parentElement;if(box.dataset.a)return;box.dataset.a=1;ans++;const ok=+x.dataset.o===q[2];if(ok)score++;x.classList.add(ok?'r':'w');box.children[q[2]].classList.add('r');if(ans===m.q.length)$('#qRes').textContent=`نتيجتك: ${AR(score)} من ${AR(m.q.length)} ${score===m.q.length?'🏆 ممتاز!':score>=m.q.length/2?'👍 كويس':'📖 راجع الدروس تاني'}`});
+}
+
+/* ---------- PROMPTS ---------- */
+let pcat='all';
+function renderPrompts(){const q=$('#pq').value.trim().toLowerCase();
+ $('#pcats').innerHTML=`<button class="${pcat==='all'?'on':''}" data-c="all">🌐 الكل<em>${AR(NP-BUILD_PROMPTS.length)}</em></button>`+PROMPTS.map(c=>`<button class="${pcat===c.id?'on':''}" data-c="${c.id}">${c.ic} ${c.n}<em>${AR(c.p.length)}</em></button>`).join('');
+ $('#pcats').querySelectorAll('button').forEach(b=>b.onclick=()=>{pcat=b.dataset.c;renderPrompts()});
+ const items=PROMPTS.filter(c=>pcat==='all'||c.id===pcat).flatMap(c=>c.p.map(p=>[p,c])).filter(([p,c])=>!q||(p[0]+' '+p[1]+' '+c.n).toLowerCase().includes(q));
+ $('#plist').innerHTML=items.length?items.map(([p,c])=>pcard(p[0],p[1],c.ic+' '+c.n)).join(''):`<div class="empty">مفيش نتايج 🤔 — جرّب كلمة تانية، أو <a href="#wizard">اعمل برومبتك بنفسك</a>.</div>`}
+$('#pq').oninput=renderPrompts;
+
+/* ---------- WIZARD ---------- */
+const W={task:'',topic:'',role:'',ctx:'',aud:'',goal:'',lang:'عامية مصرية',tone:'',len:'',avoid:'',fmt:'',ex:'',tech:[]};
+const WQ=[
+ {h:'عاوز تعمل إيه؟',p:'اختار نوع المهمة واكتب موضوعها في سطر.',f:[['chips','task',['كتابة محتوى','بوست/إعلان','إيميل/رسالة','تلخيص','شرح ومذاكرة','تحليل بيانات','خطة','كود/موقع','أفكار','صورة','ترجمة','أخرى']],['input','topic','الموضوع بالظبط','مثلاً: بوستات لكافيه جديد جنب الجامعة']]},
+ {h:'مين الخبير اللي يساعدك؟',p:'الدور بيضيف زاوية — اختار أقرب واحد أو اكتب دور.',f:[['chips','role',['خبير تسويق','مدرس شاطر','مبرمج Senior','محاسب','محرر محترف','مستشار بيزنس','مصمم','مترجم محترف','بدون دور']],['input','role','أو اكتب دور مخصص','مثلاً: صاحب مطعم ناجح بخبرة ١٠ سنين']]},
+ {h:'إيه السياق؟ ومين الجمهور؟',p:'التفاصيل اللي في دماغك ومحدش يعرفها غيرك.',f:[['text','ctx','السياق والمعلومات','مثلاً: كافيه صغير في أسوان، الأسعار مناسبة للطلبة، عندنا واي فاي وأماكن مذاكرة'],['input','aud','الجمهور','مثلاً: طلبة جامعة ١٨–٢٤ سنة']]},
+ {h:'إيه الهدف بالظبط؟',p:'النجاح شكله إيه؟ هتستخدم النتيجة في إيه؟',f:[['text','goal','الهدف / النتيجة المطلوبة','مثلاً: ٥ بوستات تزوّد الزيارات في أول أسبوع افتتاح']]},
+ {h:'القيود',p:'اللغة، الأسلوب، الطول، والممنوعات.',f:[['chips','lang',['عامية مصرية','عربي فصحى','English','عربي + إنجليزي']],['chips','tone',['ودود','رسمي','حماسي','بسيط جدًا','مقنع','مرح']],['chips','len',['قصير جدًا','متوسط','مفصّل']],['input','avoid','ممنوعات / حاجات متعملهاش','مثلاً: بدون مبالغة، بدون إيموجي كتير، متذكرش أسعار']]},
+ {h:'شكل الرد',p:'إزاي عاوز النتيجة تتعرض؟',f:[['chips','fmt',['نقاط','جدول','خطوات مرقمة','فقرات','عناوين وأقسام','كود','JSON']],['text','ex','مثال للأسلوب اللي بتحبه (اختياري)','الصق مثال يثبّت الأسلوب']]},
+ {h:'تقنيات احترافية',p:'اختار اللي يناسبك — دول اللي بيفرقوا فعلًا.',f:[['checks','tech',[['ask','اسألني الأول','يسألك أسئلة لو فيه معلومة ناقصة قبل ما يبدأ'],['plan','خطة قبل التنفيذ','يعرض خطة ويستنى موافقتك'],['crit','ناقد بعد التنفيذ','يراجع رده ويحسّنه'],['assume','اذكر افتراضاتك','يقول إيه اللي افترضه'],['src','من مصادري بس','ميضيفش معلومات من برّه وميألّفش'],['opts','٣ اختيارات','يديك ٣ نسخ مختلفة تختار منهم']]]]}];
+let ws=0;
+function renderW(){const q=WQ[ws];$('#wSteps').innerHTML=WQ.map((_,i)=>`<i class="${i<=ws?'on':''}"></i>`).join('');
+ $('#wQ').innerHTML=`<p style="color:var(--a);font-weight:800;font-size:13px">سؤال ${AR(ws+1)} من ${AR(WQ.length)}</p><h3>${q.h}</h3><p>${q.p}</p>`+q.f.map(f=>{
+  if(f[0]==='chips')return `<div class="chips" style="margin-top:12px" data-k="${f[1]}">${f[2].map(o=>`<button class="chip ${W[f[1]]===o?'on':''}">${o}</button>`).join('')}</div>`;
+  if(f[0]==='input')return `<label class="lb">${f[2]}</label><input class="inp" data-k="${f[1]}" placeholder="${esc(f[3])}" value="${esc(W[f[1]])}">`;
+  if(f[0]==='text')return `<label class="lb">${f[2]}</label><textarea class="inp" data-k="${f[1]}" placeholder="${esc(f[3])}">${esc(W[f[1]])}</textarea>`;
+  return f[2].map(c=>`<label class="ck"><input type="checkbox" data-t="${c[0]}" ${W.tech.includes(c[0])?'checked':''}><div><b>${c[1]}</b><span>${c[2]}</span></div></label>`).join('')}).join('');
+ $$('#wQ .chips').forEach(g=>g.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{const k=g.dataset.k;W[k]=W[k]===b.textContent?'':b.textContent;if(k==='role'){const i=$('#wQ input[data-k=role]');if(i)i.value=W.role}renderW();outW()}));
+ $$('#wQ [data-k]:not(.chips)').forEach(i=>i.oninput=()=>{W[i.dataset.k]=i.value;outW()});
+ $$('#wQ [data-t]').forEach(c=>c.onchange=()=>{W.tech=$$('#wQ [data-t]:checked').map(x=>x.dataset.t);outW()});
+ $('#wPrev').style.visibility=ws?'visible':'hidden';$('#wNext').textContent=ws===WQ.length-1?'✓ خلصت — انسخ':'التالي ←';outW()}
+function buildW(){const L=[];const role=W.role&&W.role!=='بدون دور'?W.role:'';
+ if(role)L.push(`اتصرف كـ ${role}.`);
+ const t=[W.task,W.topic].filter(Boolean).join(': ');L.push(t?`المهمة: ${t}.`:'المهمة: [اكتب المهمة].');
+ if(W.ctx)L.push(`السياق: ${W.ctx}`);if(W.aud)L.push(`الجمهور: ${W.aud}.`);
+ if(W.goal)L.push(`الهدف: ${W.goal}`);
+ const c=[W.lang&&`اللغة: ${W.lang}`,W.tone&&`الأسلوب: ${W.tone}`,W.len&&`الطول: ${W.len}`,W.avoid&&`تجنّب: ${W.avoid}`].filter(Boolean);if(c.length)L.push('القيود: '+c.join(' · ')+'.');
+ if(W.fmt)L.push(`اعرض النتيجة في شكل: ${W.fmt}.`);
+ if(W.ex)L.push(`مثال للأسلوب المطلوب (قلّد الأسلوب مش المحتوى):\n"""\n${W.ex}\n"""`);
+ const T={ask:'قبل ما تبدأ: لو فيه معلومة ناقصة هتغيّر النتيجة فعلًا، اسألني لحد ٥ أسئلة واستنى ردي.',plan:'اعرض خطتك في نقاط الأول واستنى موافقتي قبل التنفيذ.',crit:'بعد ما تخلص، راجع ردك كناقد صريح وحسّنه، ووضّح إيه اللي اتغير.',assume:'اذكر أي افتراضات عملتها في الآخر.',src:'اعتمد على المعلومات اللي اديتهالك بس، وأي حاجة مش موجودة قول «مش موجود في المعلومات» ومتألّفش.',opts:'اديني ٣ نسخ مختلفة أختار منهم.'};
+ W.tech.forEach(k=>L.push(T[k]));return L.join('\n')}
+function scoreOf(o){return [!!(o.ctx||o.role),!!(o.lang||o.tone||o.len||o.avoid),!!(o.goal||o.topic),!!o.aud,!!o.fmt]}
+function outW(){const x=buildW(),s=scoreOf(W),n=s.filter(Boolean).length;
+ $('#wMeter').innerHTML=['C سياق','L قيود','E هدف','A جمهور','R شكل'].map((l,i)=>`<div class="${s[i]?'on':''}">${l}</div>`).join('');
+ $('#wScore').innerHTML=n===5?'🏆 برومبت CLEAR كامل!':`قوة البرومبت: ${AR(n)}/٥ — ${['ابدأ جاوب','محتاج تفاصيل أكتر','بدأ يبقى كويس','كويس جدًا','قرّبت!'][n]}`;
+ $('#wOut').innerHTML=hl(x);$('#wGpt').href=gpt(x);$('#wCl').href=cla(x)}
+$('#wNext').onclick=()=>{if(ws<WQ.length-1){ws++;renderW()}else copy(buildW())};
+$('#wPrev').onclick=()=>{if(ws){ws--;renderW()}};
+$('#wReset').onclick=()=>{Object.assign(W,{task:'',topic:'',role:'',ctx:'',aud:'',goal:'',lang:'عامية مصرية',tone:'',len:'',avoid:'',fmt:'',ex:'',tech:[]});ws=0;renderW()};
+$('#wCopy').onclick=()=>copy(buildW());$('#wSave').onclick=()=>toggleFav(W.topic||W.task||'برومبت من المُنشئ',buildW(),'🪄 من المُنشئ');
+$$('[data-wt]').forEach(b=>b.onclick=()=>{$$('[data-wt]').forEach(x=>x.classList.toggle('on',x===b));$('#wBuild').style.display=b.dataset.wt==='build'?'':'none';$('#wRate').style.display=b.dataset.wt==='rate'?'':'none'});
+
+/* rate prompt (heuristic) */
+$('#rGo').onclick=()=>{const p=$('#rIn').value.trim();if(!p){toast('الصق برومبت الأول');return}
+ const has=r=>r.test(p),w=p.split(/\s+/).length;
+ const cr=[
+  ['وضوح المهمة',(w>=6?1:0)+(has(/اكتب|لخّص|لخص|اشرح|حلل|حلّل|اعمل|ترجم|قارن|صمم|صمّم|ابن|رتّب|رتب|راجع|write|create|analy|summar|explain|build/i)?1:0),'ابدأ بفعل واضح (اكتب/لخّص/حلّل) وحدد الموضوع بالظبط.'],
+  ['السياق',(w>=20?1:0)+(has(/سياق|عندي|أنا |انا |مشروع|شركة|محل|نشاط|بشتغل|context|my |we /i)?1:0),'احكي الموقف: انت مين، إيه النشاط، وإيه المعلومات اللي عندك.'],
+  ['الجمهور وشكل الرد',(has(/جمهور|لـ ?(طلبة|عملاء|مبتدئ|مدير|أطفال|ناس)|عملاء|audience|for (students|beginners|customers)/i)?1:0)+(has(/جدول|نقاط|نقط|خطوات|فقرات|قائمة|json|table|bullet|list|markdown/i)?1:0),'قول مين هيقرا، واطلب شكل محدد (جدول/نقاط/خطوات).'],
+  ['قيود ومعايير نجاح',(has(/كلمة|سطر|سطور|حرف|دقيقة|ثانية|بدون|من غير|متستخدمش|لا ت|عامية|فصحى|رسمي|أسلوب|ودود|words|without|don.t|tone|\d/i)?1:0)+(has(/الهدف|عشان|بحيث|هدف|نجاح|goal|so that/i)?1:0),'حدد الطول، الأسلوب، اللغة، الممنوعات، والهدف النهائي.'],
+  ['تحقّق وأمان',(has(/راجع|تأكد|اتأكد|مصدر|مصادر|متألّف|متألفش|افتراض|اسألني|verify|source|assum|ask me/i)?1:0)+(has(/باسورد|password|رقم بطاقة|كلمة السر/i)?-1:1),'اطلب منه يذكر افتراضاته، يسألك لو ناقصه حاجة، ومايألّفش. ومتحطش بيانات سرية.']];
+ const tot=cr.reduce((a,c)=>a+Math.max(0,Math.min(2,c[1])),0);
+ $('#rOut').innerHTML=`<h3 style="margin:0">النتيجة: <span class="gt" style="font-size:34px">${AR(tot)}</span> / ١٠</h3><p style="color:var(--mu);margin-bottom:10px">${tot>=8?'🏆 برومبت قوي!':tot>=5?'👍 كويس — فيه مساحة تحسين':'⚠️ البرومبت عام — الرد غالبًا هيطلع عام'}</p>`+cr.map(c=>{const v=Math.max(0,Math.min(2,c[1]));return `<div class="ck" style="cursor:default"><b style="min-width:34px;color:${v===2?'var(--ok)':v===1?'var(--warn)':'var(--bad)'}">${AR(v)}/٢</b><div><b>${c[0]}</b>${v<2?`<span>${c[2]}</span>`:'<span>تمام ✓</span>'}</div></div>`}).join('')+`<p style="color:var(--fa);font-size:12.5px;margin-top:10px">* تقييم تقريبي بالكلمات المفتاحية — للتقييم الأدق استخدم «هات برومبت يحسّنه» وحطه في أداة الـ AI.</p>`};
+$('#rFix').onclick=()=>{const p=$('#rIn').value.trim();if(!p){toast('الصق برومبت الأول');return}openFill({t:'حسّن برومبتي',x:PROMPTS.find(c=>c.id==='meta').p[0][1].replace('[الصقه هنا]',p),cat:'✨ ميتا'})};
+
+/* ---------- SITES ---------- */
+const S={type:'landing',lang:'عربي RTL',feats:['dark','resp','rtl','wa']};
+function renderSites(){
+ $('#sTypes').innerHTML=SITE_TYPES.map(t=>`<div class="card stype hov ${S.type===t[0]?'on':''}" data-st="${t[0]}"><div class="em" style="font-size:24px">${t[1]}</div><h3>${t[2]}</h3></div>`).join('');
+ $('#sLang').innerHTML=['عربي RTL','English','عربي + إنجليزي'].map(l=>`<button class="chip ${S.lang===l?'on':''}">${l}</button>`).join('');
+ $('#sFeat').innerHTML=SITE_FEATS.map(f=>`<button class="chip ${S.feats.includes(f[0])?'on':''}" data-f="${f[0]}">${f[1]}</button>`).join('');
+ $$('#sTypes [data-st]').forEach(c=>c.onclick=()=>{S.type=c.dataset.st;renderSites()});
+ $$('#sLang .chip').forEach(c=>c.onclick=()=>{S.lang=c.textContent;renderSites()});
+ $$('#sFeat .chip').forEach(c=>c.onclick=()=>{const f=c.dataset.f;S.feats=S.feats.includes(f)?S.feats.filter(x=>x!==f):[...S.feats,f];renderSites()});
+ outS()}
+function buildS(){const t=SITE_TYPES.find(x=>x[0]===S.type),nm=$('#sName').value.trim()||'[اسم المشروع]',au=$('#sAud').value.trim()||'[الجمهور]',more=$('#sMore').value.trim();
+ const fs=SITE_FEATS.filter(f=>S.feats.includes(f[0])).map(f=>'- '+f[1]);
+ return `أنت Senior Front-end Developer ومصمم UI/UX محترف.
+ابنِ ${t[2]} لـ «${nm}» في ملف HTML واحد كامل (HTML + CSS + JavaScript جوه نفس الملف)، من غير أي مكتبات خارجية إلا Google Fonts.
+
+الجمهور: ${au}
+اللغة: ${S.lang}${S.lang.includes('عربي')?' (خط Cairo أو Tajawal، واتجاه صحيح)':''}
+الإحساس: ${$('#sMood').value} — اللون الأساسي ${$('#sC1').value} والثانوي ${$('#sC2').value}
+
+الوظيفة والأقسام:
+${t[3]}
+${more?'\nتفاصيل إضافية:\n'+more+'\n':''}
+المميزات المطلوبة:
+${fs.join('\n')||'- Responsive'}
+
+معايير الجودة:
+- كود منظم بتعليقات واضحة، ومتغيرات CSS للألوان والمسافات.
+- تصميم احترافي: هرمية خطوط واضحة، مسافات متناسقة، Hover states، وأنيميشن خفيف.
+- أي بيانات تجريبية تكون واضحة إنها مثال وسهل أغيّرها من مكان واحد في أول الـ JavaScript.
+- تحقق من المدخلات، ورسايل خطأ ونجاح ودودة، ومفيش أخطاء في الـ Console.
+- يشتغل بفتح الملف مباشرة في المتصفح.
+
+طريقة الشغل:
+١) اعرض الأول هيكل الصفحة والأقسام في نقاط واستنى موافقتي.
+٢) بعد الموافقة اكتب الملف كامل في Code block واحد.
+٣) في الآخر قولّي أعدّل إيه بسهولة (الاسم، الألوان، البيانات) واقترح ٣ تحسينات.`}
+function outS(){const x=buildS();$('#sOut').innerHTML=hl(x);$('#sCl').href=cla(x);$('#sGpt').href=gpt(x)}
+['#sName','#sAud','#sMore','#sC1','#sC2','#sMood'].forEach(s=>$(s).addEventListener('input',outS));
+$('#sCopy').onclick=()=>copy(buildS());$('#sSave').onclick=()=>toggleFav('موقع: '+($('#sName').value||SITE_TYPES.find(x=>x[0]===S.type)[2]),buildS(),'🧱 مواقع');
+function renderBuild(){$('#bList').innerHTML=BUILD_PROMPTS.map(p=>pcard(p[0],p[1],'🧱 مواقع و SaaS')).join('')}
+
+/* ---------- TOOLS ---------- */
+let tcat='all';const TCOL={chat:'#8b5cf6',research:'#0ea5e9',image:'#ec4899',video:'#f43f5e',audio:'#f59e0b',code:'#10b981',slides:'#6366f1',work:'#14b8a6',auto:'#f97316',data:'#3b82f6'};
+function renderTools(){const q=$('#tq').value.trim().toLowerCase();
+ $('#tcats').innerHTML=`<button class="chip ${tcat==='all'?'on':''}" data-tc="all">🌐 الكل (${AR(TOOLS.length)})</button>`+TOOL_CATS.map(c=>`<button class="chip ${tcat===c[0]?'on':''}" data-tc="${c[0]}">${c[1]} ${c[2]}</button>`).join('');
+ $$('#tcats [data-tc]').forEach(b=>b.onclick=()=>{tcat=b.dataset.tc;renderTools()});
+ const it=TOOLS.filter(t=>(tcat==='all'||t[1]===tcat)&&(!q||(t[0]+' '+t[3]+' '+t[4].join(' ')+' '+TOOL_CATS.find(c=>c[0]===t[1])[2]).toLowerCase().includes(q)));
+ $('#tlist').innerHTML=it.length?it.map(t=>{const c=TOOL_CATS.find(x=>x[0]===t[1]);return `<div class="card hov tc"><div class="th"><div class="av" style="background:${TCOL[t[1]]}">${esc(t[0][0])}</div><div><h3>${esc(t[0])}</h3><small>${esc(t[2].replace(/^https?:\/\/(www\.)?/,''))}</small></div></div><p>${esc(t[3])}</p><div class="tags"><span>${c[1]} ${c[2]}</span>${t[4].map(g=>`<span>${esc(g)}</span>`).join('')}</div><div class="acts" style="margin-top:6px"><a class="btn pr sm" href="${t[2]}" target="_blank" rel="noopener">افتح الأداة ↗</a></div></div>`}).join(''):`<div class="empty">مفيش أداة بالاسم ده 🤔</div>`}
+$('#tq').oninput=renderTools;
+
+/* ---------- FAVS ---------- */
+function renderFavs(){$('#flist').innerHTML=favs.length?favs.map(f=>pcard(f.t,f.x,f.c)).join(''):`<div class="empty">لسه محفظتش حاجة — دوس ⭐ على أي برومبت يعجبك.<br><br><a class="btn pr" href="#prompts">تصفّح المكتبة</a></div>`}
+$('#fExp').onclick=()=>{if(!favs.length){toast('مفيش محفوظات');return}const b=new Blob([favs.map(f=>`### ${f.t}\n${f.x}\n`).join('\n---\n\n')],{type:'text/plain;charset=utf-8'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='my-prompts-AI-ATLAS.txt';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)};
+$('#fClr').onclick=()=>{if(!favs.length)return;if(confirm('متأكد إنك عاوز تمسح كل المحفوظات؟')){favs=[];store.set('atlas-favs',favs);updFav();renderFavs()}};
+
+/* ---------- GLOBAL SEARCH ---------- */
+let sres=[],ssel=0;
+function openS(){openM('sp');$('#spI').value='';runS();setTimeout(()=>$('#spI').focus(),50)}
+function runS(){const q=$('#spI').value.trim().toLowerCase();sres=[];
+ if(q){PROMPTS.forEach(c=>c.p.forEach(p=>{if((p[0]+' '+p[1]+' '+c.n).toLowerCase().includes(q))sres.push({ic:c.ic,t:p[0],s:c.n,k:'برومبت',a:()=>openFill({t:p[0],x:p[1],cat:c.ic+' '+c.n})})}));
+  BUILD_PROMPTS.forEach(p=>{if((p[0]+' '+p[1]).toLowerCase().includes(q))sres.push({ic:'🧱',t:p[0],s:'بناء المواقع',k:'برومبت',a:()=>openFill({t:p[0],x:p[1],cat:'🧱 مواقع'})})});
+  TOOLS.forEach(t=>{if((t[0]+' '+t[3]+' '+t[4].join(' ')).toLowerCase().includes(q))sres.push({ic:'🧰',t:t[0],s:t[3],k:'أداة',a:()=>window.open(t[2],'_blank','noopener')})});
+  LESSONS.forEach(m=>m.sec.forEach(s=>{if((s[0]+' '+s[1]).toLowerCase().includes(q))sres.push({ic:m.ic,t:s[0],s:m.t,k:'درس',a:()=>{curMod=m.id;location.hash='learn';renderLearn()}})}));
+  GLOSS.forEach(g=>{if((g[0]+' '+g[1]).toLowerCase().includes(q))sres.push({ic:'📘',t:g[0],s:g[1],k:'مصطلح',a:()=>{curMod=null;location.hash='learn';renderLearn()}})})}
+ sres=sres.slice(0,40);ssel=0;drawS(q)}
+function drawS(q){$('#spR').innerHTML=!q?'<p style="color:var(--mu);padding:14px">اكتب أي كلمة: إيميل، فيديو، CV، هلوسة، n8n…</p>':sres.length?sres.map((r,i)=>`<button class="${i===ssel?'sel':''}" data-i="${i}"><span style="font-size:20px">${r.ic}</span><div><b>${esc(r.t)}</b><small>${esc(r.s.slice(0,80))}</small></div><em>${r.k}</em></button>`).join(''):'<p style="color:var(--mu);padding:14px">مفيش نتايج.</p>';
+ $$('#spR [data-i]').forEach(b=>b.onclick=()=>pickS(+b.dataset.i))}
+function pickS(i){const r=sres[i];if(!r)return;closeM('sp');r.a()}
+$('#spI').oninput=runS;
+$('#spI').onkeydown=e=>{if(e.key==='ArrowDown'){ssel=Math.min(sres.length-1,ssel+1);drawS(1)}else if(e.key==='ArrowUp'){ssel=Math.max(0,ssel-1);drawS(1)}else if(e.key==='Enter')pickS(ssel)};
+$('#sOpen').onclick=openS;
+addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k'){e.preventDefault();openS()}else if(e.key==='/'&&!/INPUT|TEXTAREA/.test(document.activeElement.tagName)){e.preventDefault();openS()}else if(e.key==='Escape')$$('.md.on').forEach(m=>closeM(m.id))});
+
+/* ---------- ROUTER ---------- */
+let cur='home';const PAGES=['home','learn','prompts','wizard','sites','tools','favs'];
+function route(){const h=location.hash.slice(1);cur=PAGES.includes(h)?h:'home';
+ $$('section.pg').forEach(s=>s.classList.toggle('on',s.id==='p-'+cur));$$('nav.main a').forEach(a=>a.classList.toggle('on',a.dataset.p===cur));
+ $('#nav').classList.remove('open');if(cur==='favs')renderFavs();if(cur==='learn')renderLearn();scrollTo({top:0})}
+addEventListener('hashchange',route);
+$('#mBtn').onclick=()=>$('#nav').classList.toggle('open');
+addEventListener('scroll',()=>$('#toTop').classList.toggle('on',scrollY>600),{passive:true});
+$('#toTop').onclick=()=>scrollTo({top:0,behavior:'smooth'});
+
+/* ---------- START ---------- */
+applyTheme();renderHome();renderLearn();renderPrompts();renderW();renderSites();renderBuild();renderTools();updFav();route();
+
+</script>
+</body></html>
